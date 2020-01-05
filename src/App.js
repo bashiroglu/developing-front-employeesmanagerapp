@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import { Switch, Route, Redirect } from 'react-router-dom';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/header/Header';
-// import AllUsersPage from './pages/alluserspage/AllUsersPage';
+import AllUsersPage from './pages/allemployeespage/AllEmployeesPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,7 +20,7 @@ export class App extends Component {
         <div>
           <Header />
           <Switch>
-            {/* <Route exact path="/" component={AllUsersPage} /> */}
+            <Route exact path="/" component={AllUsersPage} />
           </Switch>
         </div>
       </div>
