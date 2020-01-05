@@ -21,14 +21,7 @@ export class SignUpUserByManagerPage extends Component {
               rows="3"
             ></textarea>
           </div>
-          <div className="form-group ">
-            <label for="exampleFormControlTextarea1">Worker code</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-            ></textarea>
-          </div>
+          
           <button type="submit" className="btn mx-3 btn-primary">
             Check and give list of users
           </button>
