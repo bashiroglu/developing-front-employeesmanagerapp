@@ -4,7 +4,7 @@ function Filter({ FilterOptions }) {
   return (
     <div className="container my-3">
       <form className="form-inline">
-        <label className="my-1 mr-2" for="inlineFormCustomSelectPref">
+        <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
           Bring
         </label>
         <select
@@ -12,10 +12,13 @@ function Filter({ FilterOptions }) {
           id="inlineFormCustomSelectPref"
         >
           {FilterOptions.map((option, idx) => (
-            <option value={idx}> {option}</option>
+            <option key={option} value={idx}>
+              
+              {option}
+            </option>
           ))}
         </select>
-        <label className="my-1 mr-2" for="inlineFormCustomSelectPref">
+        <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
           employees
         </label>
 

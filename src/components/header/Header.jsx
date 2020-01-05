@@ -22,7 +22,11 @@ export class Header extends Component {
                 </Link>
               </li>
             </ul>
+
           </div>
+            <Link className="btn-light btn ml-auto" to="/logout">
+              Log out
+            </Link>
         </nav>
       </div>
     );

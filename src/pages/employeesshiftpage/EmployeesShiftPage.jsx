@@ -5,7 +5,7 @@ import Table from '../../components/table/Table';
 
 export class EmployeesShiftPage extends Component {
   static defaultProps = {
-    TableColumns: ['id', 'fullname', 'username', 'shift type'],
+    TableColumns: ['id', 'fullname', 'username', 'shift type', 'shift'],
     FilterOptions: [
       '6:00-18:00',
       '18:00-6:00',
