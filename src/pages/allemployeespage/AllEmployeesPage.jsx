@@ -19,13 +19,17 @@ export class AllEmployeesPage extends Component {
         id: '1',
         name: 'Hasan',
         surname: 'Muradli',
-        username: 'muradlihasan'
+        username: 'muradlihasan',
+        groupname: 'groupname',
+        equipmentStatus: 'equipmentStatus'
       },
       {
         id: '2',
         name: 'John',
         surname: 'Bottom',
-        username: 'johnbottom'
+        username: 'johnbottom',
+        groupname: 'groupname',
+        equipmentStatus: 'equipmentStatus'
       }
     ]
   };

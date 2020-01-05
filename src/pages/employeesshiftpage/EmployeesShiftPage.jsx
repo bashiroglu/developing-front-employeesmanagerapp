@@ -12,14 +12,30 @@ export class EmployeesShiftPage extends Component {
       '6:00-14:00',
       '14:00-22:00',
       '22:00-6:00'
+    ],
+    employees: [
+      {
+        id: '1',
+        fullname: 'Hasan',
+        shiftType: 'Muradli',
+        shift: 'muradlihasan',
+        username: 'groupname'
+      },
+      {
+        id: '2',
+        fullname: 'Hasan',
+        shiftType: 'Muradli',
+        shift: 'muradlihasan',
+        username: 'groupname'
+      }
     ]
   };
   render() {
-    const { FilterOptions, TableColumns } = this.props;
+    const { FilterOptions, TableColumns, employees } = this.props;
     return (
       <div>
         <Filter FilterOptions={FilterOptions} />
-        <Table TableColumns={TableColumns} />
+        <Table TableColumns={TableColumns} employees={employees} />
       </div>
     );
   }
