@@ -1,23 +1,22 @@
 import React from 'react';
 
-function Filter() {
+function Filter({ FilterOptions }) {
   return (
-    <div className="container mt-3">
+    <div className="container my-3">
       <form className="form-inline">
         <label className="my-1 mr-2" for="inlineFormCustomSelectPref">
-          Bring 
+          Bring
         </label>
         <select
           className="custom-select my-1 mr-sm-2"
           id="inlineFormCustomSelectPref"
         >
-          <option selected>Choose...</option>
-          <option value="1">fully equiped</option>
-          <option value="2">t-shirt equiped</option>
-          <option value="3">shoes equiped</option>
+          {FilterOptions.map((option, idx) => (
+            <option value={idx}> {option}</option>
+          ))}
         </select>
         <label className="my-1 mr-2" for="inlineFormCustomSelectPref">
-          employees 
+          employees
         </label>
 
         <div className="custom-control custom-checkbox my-1 mr-sm-2">

@@ -3,19 +3,17 @@ import React, { Component } from 'react';
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 
-export class AllEmployeesPage extends Component {
+export class EmployeesShiftPage extends Component {
   static defaultProps = {
-    TableColumns: [
-      'id',
-      'name',
-      'surname',
-      'username',
-      'groupname',
-      'equipmentStatus'
-    ],
-    FilterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped']
+    TableColumns: ['id', 'fullname', 'username', 'shift type'],
+    FilterOptions: [
+      '6:00-18:00',
+      '18:00-6:00',
+      '6:00-14:00',
+      '14:00-22:00',
+      '22:00-6:00'
+    ]
   };
-
   render() {
     const { FilterOptions, TableColumns } = this.props;
     return (
@@ -27,4 +25,4 @@ export class AllEmployeesPage extends Component {
   }
 }
 
-export default AllEmployeesPage;
+export default EmployeesShiftPage;

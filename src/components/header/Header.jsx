@@ -11,9 +11,14 @@ export class Header extends Component {
           </a>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">
-                  All users
+              <li className="nav-item ">
+                <Link className="nav-link" to="/employees-list">
+                  All Emplooyes
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link className="nav-link" to="/employees-shif-page">
+                  Emplooyes shift page
                 </Link>
               </li>
             </ul>
