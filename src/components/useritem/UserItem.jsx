@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserItem({ employee }) {
+function UserItem({ employee: { name, id, surname, username } }) {
   // console.log(name, id, surname, username);
   // id: '2',
   //       name: 'John',
@@ -9,10 +9,10 @@ function UserItem({ employee }) {
 
   return (
     <tr>
-      <th scope="row">{employee.id}</th>
-      <td>{employee.name}</td>
-      <td>{employee.surname}</td>
-      <td>{employee.username}</td>
+      <th scope="row">{id}</th>
+      <td>{name}</td>
+      <td>{surname}</td>
+      <td>{username}</td>
     </tr>
   );
 }
