@@ -13,15 +13,29 @@ export class AllEmployeesPage extends Component {
       'groupname',
       'equipmentStatus'
     ],
-    FilterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped']
+    FilterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped'],
+    employees: [
+      {
+        id: '1',
+        name: 'Hasan',
+        surname: 'Muradli',
+        username: 'muradlihasan'
+      },
+      {
+        id: '2',
+        name: 'John',
+        surname: 'Bottom',
+        username: 'johnbottom'
+      }
+    ]
   };
 
   render() {
-    const { FilterOptions, TableColumns } = this.props;
+    const { FilterOptions, TableColumns, employees } = this.props;
     return (
       <div>
         <Filter FilterOptions={FilterOptions} />
-        <Table TableColumns={TableColumns} />
+        <Table TableColumns={TableColumns} employees={employees} />
       </div>
     );
   }
