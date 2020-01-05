@@ -26,6 +26,7 @@ export class Header extends Component {
                   User Sign Up
                 </Link>
               </li>
+              
             </ul>
           </div>
           <Link className="btn-light btn ml-auto" to="/logout">

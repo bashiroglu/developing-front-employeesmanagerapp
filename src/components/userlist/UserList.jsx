@@ -5,7 +5,7 @@ function UserList({ employees }) {
   return (
     <tbody>
       {employees.map(employee => (
-        <UserItem employee={employee} />
+        <UserItem key={employee.id} employee={employee} />
       ))}
     </tbody>
   );

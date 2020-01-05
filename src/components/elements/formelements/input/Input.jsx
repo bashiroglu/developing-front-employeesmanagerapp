@@ -5,32 +5,35 @@ export class Input extends Component {
   //     super(props);
   //   }
   render() {
-    const { onClick, type, name, id, label, additionaltext } = this.props;
+    const {
+      onClick,
+      type,
+      id,
+      additionaltextid,
+      label,
+      additionaltext
+    } = this.props;
     const element =
       this.props.element === 'input' ? (
-        <div class="form-group">
-          <label for="exampleInputEmail1">{label}</label>
+        <div className="form-group">
+          <label htmlFor={id}>{label}</label>
           <input
             type={type}
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            className="form-control"
+            id={id}
+            aria-describedby={additionaltextid}
             onClick={onClick}
           />
-          {this.props.additionaltext ? (
-            <small id="emailHelp" class="form-text text-muted">
+          {this.props.additionaltext && (
+            <small id={additionaltextid} className="form-text text-muted">
               {additionaltext}
             </small>
-          ) : null}
+          )}
         </div>
       ) : (
         <div className="form-group ">
-          <label for="exampleFormControlTextarea1">Worker code</label>
-          <textarea
-            className="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-          ></textarea>
+          <label htmlFor={id}>{label}</label>
+          <textarea className="form-control" id={id} rows="3"></textarea>
         </div>
       );
     return element;
