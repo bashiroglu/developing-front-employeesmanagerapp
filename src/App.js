@@ -7,6 +7,7 @@ import EmployeesShiftPage from './pages/employeesshiftpage//EmployeesShiftPage';
 import SignUpUserByManagerPage from './pages/signupuserbymanagerpage/SignUpUserByManagerPage';
 import LoginAndSignUpPage from './pages/loginandsignuppage/LoginAndSignUpPage';
 import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmployeesPage';
+import SettingsPage from './pages/settingspageofuser/SettingsPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -44,6 +45,11 @@ export class App extends Component {
               exact
               path="/employee-confirm"
               component={NewlyAddedEmployeesPage}
+            />
+            <Route
+              exact
+              path="/settings"
+              component={SettingsPage}
             />
           </Switch>
         </div>

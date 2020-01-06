@@ -31,6 +31,11 @@ export class Header extends Component {
                   New Users
                 </Link>
               </li>
+              <li className="nav-item ">
+                <Link className="nav-link" to="/settings">
+                  Go to settings
+                </Link>
+              </li>
             </ul>
           </div>
           <Link className="btn-light btn ml-auto" to="/logout">
