@@ -16,17 +16,17 @@ export class EmployeesShiftPage extends Component {
     employees: [
       {
         id: '1',
-        fullname: 'Hasan',
-        shiftType: 'Muradli',
-        shift: 'muradlihasan',
-        username: 'groupname'
+        fullname: 'Hasan aslan',
+        shiftType: '12 hours',
+        shift: '18:00-6:00',
+        username: 'hasanaslan'
       },
       {
         id: '2',
-        fullname: 'Hasan',
-        shiftType: 'Muradli',
-        shift: 'muradlihasan',
-        username: 'groupname'
+        fullname: 'hasan murad',
+        shiftType: '8 hours',
+        shift: '22:00-6:00',
+        username: 'hasanmurad'
       }
     ]
   };
