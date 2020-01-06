@@ -52,9 +52,15 @@ export class SettingsPage extends Component {
               element="input"
             />
             <Input
-              label="Password Confirm"
+              label="New Password"
               type="password"
-              id="passwordConfirm"
+              id="newpassword"
+              element="input"
+            />
+            <Input
+              label="New Password Confirm"
+              type="password"
+              id="newpasswordConfirm"
               element="input"
             />
 
