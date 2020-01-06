@@ -1,15 +1,12 @@
 import React from 'react';
 
-function UserItem({ employee: { name, id, surname, username,groupname,equipmentStatus } }) {
+function UserItem({ employee }) {
   return (
     <tr>
-      <th scope="row">{id}</th>
-      <td>{name}</td>
-      <td>{surname}</td>
-      <td>{username}</td>
-      <td>{username}</td>
-      <td>{username}</td>
-      <td>{username}</td>
+      <th scope="row">{employee.id}</th>
+      {Object.keys(employee).map(key => (
+        <td key={employee[key]}>{employee[key]}</td>
+      ))}
     </tr>
   );
 }
