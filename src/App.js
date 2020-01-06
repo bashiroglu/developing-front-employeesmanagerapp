@@ -6,6 +6,7 @@ import AllUsersPage from './pages/allemployeespage/AllEmployeesPage';
 import EmployeesShiftPage from './pages/employeesshiftpage//EmployeesShiftPage';
 import SignUpUserByManagerPage from './pages/signupuserbymanagerpage/SignUpUserByManagerPage';
 import LoginAndSignUpPage from './pages/loginandsignuppage/LoginAndSignUpPage';
+import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmployeesPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -38,6 +39,11 @@ export class App extends Component {
               exact
               path="/sign-up-or-sign-in"
               component={LoginAndSignUpPage}
+            />
+            <Route
+              exact
+              path="/employee-confirm"
+              component={NewlyAddedEmployeesPage}
             />
           </Switch>
         </div>
