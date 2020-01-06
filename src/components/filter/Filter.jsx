@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Filter({ FilterOptions }) {
+function Filter({ FilterOptions, name, value, onChange }) {
   return (
     <div className="container my-3">
       <form className="form-inline">
@@ -8,12 +8,14 @@ function Filter({ FilterOptions }) {
           Bring
         </label>
         <select
+          name={name}
+          value={value}
+          onChange={onChange}
           className="custom-select my-1 mr-sm-2"
           id="inlineFormCustomSelectPref"
         >
           {FilterOptions.map((option, idx) => (
-            <option key={option} value={idx}>
-              
+            <option key={option} value={option}>
               {option}
             </option>
           ))}

@@ -4,6 +4,15 @@ import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 
 export class AllEmployeesPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: 'fully equiped'
+    };
+  }
+  HandleInputChange = ({ target: { value, name } }) =>
+    this.setState({ [name]: value });
+
   static defaultProps = {
     TableColumns: [
       'id',
@@ -33,12 +42,19 @@ export class AllEmployeesPage extends Component {
       }
     ]
   };
+  HandleInputChange = ({ target: { value, name } }) =>
+    this.setState({ [name]: value });
 
   render() {
     const { FilterOptions, TableColumns, employees } = this.props;
     return (
       <div>
-        <Filter FilterOptions={FilterOptions} />
+        <Filter
+          FilterOptions={FilterOptions}
+          onChange={this.HandleInputChange}
+          name="filter"
+          value={this.state.selected}
+        />
         <Table TableColumns={TableColumns} employees={employees} />
       </div>
     );
