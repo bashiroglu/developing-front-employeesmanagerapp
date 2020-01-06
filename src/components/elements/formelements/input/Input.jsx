@@ -24,8 +24,8 @@ export class Input extends Component {
             className="form-control"
             id={id}
             aria-describedby={additionaltextid}
-            onChange={onChange}
             name={name}
+            onChange={onChange}
           />
           {this.props.additionaltext && (
             <small id={additionaltextid} className="form-text text-muted">
