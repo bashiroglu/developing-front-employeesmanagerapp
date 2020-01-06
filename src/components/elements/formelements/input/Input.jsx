@@ -13,7 +13,8 @@ export class Input extends Component {
       label,
       additionaltext,
       name,
-      value
+      value,
+      FilterOptions
     } = this.props;
     const element =
       this.props.element === 'input' ? (
@@ -33,6 +34,20 @@ export class Input extends Component {
             </small>
           )}
         </div>
+      ) : this.props.element === 'select' ? (
+        <select
+          name={name}
+          value={value}
+          onChange={onChange}
+          className="custom-select my-1 mr-sm-2"
+          id={id}
+        >
+          {FilterOptions.map((option, idx) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
       ) : (
         <div className="form-group ">
           <label htmlFor={id}>{label}</label>

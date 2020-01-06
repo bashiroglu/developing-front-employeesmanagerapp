@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../elements/formelements/input/Input';
 
 function Filter({ FilterOptions, name, value, onChange }) {
   return (
@@ -7,19 +8,14 @@ function Filter({ FilterOptions, name, value, onChange }) {
         <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
           Bring
         </label>
-        <select
+        <Input
+          id="filterselect"
           name={name}
-          value={value}
           onChange={onChange}
-          className="custom-select my-1 mr-sm-2"
-          id="inlineFormCustomSelectPref"
-        >
-          {FilterOptions.map((option, idx) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+          FilterOptions={FilterOptions}
+          value={value}
+          element="select"
+        />
         <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
           employees
         </label>

@@ -53,7 +53,7 @@ export class AllEmployeesPage extends Component {
         <Filter
           FilterOptions={FilterOptions}
           onChange={this.HandleInputChange}
-          name="filter"
+          name="filterSelect"
           value={this.state.selected}
         />
         <Table TableColumns={TableColumns} employees={employees} />

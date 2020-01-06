@@ -16,6 +16,7 @@ export class Login extends Component {
   render() {
     return (
       <form>
+        <h2>I have already account</h2>
         <Input
           label="Email"
           type="email"

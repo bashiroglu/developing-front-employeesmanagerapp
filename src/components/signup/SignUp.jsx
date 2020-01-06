@@ -17,7 +17,8 @@ export class SignUp extends Component {
     this.setState({ [name]: value });
   render() {
     return (
-      <div>
+      <form>
+        <h2>I don't have account</h2>
         <Input
           label="Email"
           type="email"
@@ -60,7 +61,7 @@ export class SignUp extends Component {
         />
 
         <Button classes=" mx-3 btn-success">Sign up</Button>
-      </div>
+      </form>
     );
   }
 }

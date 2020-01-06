@@ -23,6 +23,10 @@ export class SettingsPage extends Component {
       <div className="container">
         <div className="row">
           <form className="col-md-6 mt-4">
+            <h2>Fill in your details</h2>
+            <p>
+              This data will be used to provide you neccessary items to work
+            </p>
             <Input
               label="Email"
               type="email"
@@ -68,6 +72,7 @@ export class SettingsPage extends Component {
             {/* <Button classes=" mx-3 btn-success">Sign Up all users</Button> */}
           </form>
           <form className="col-md-6 mt-4">
+            <h2>You can update your password</h2>
             <Input
               label="Password"
               type="password"
