@@ -11,7 +11,9 @@ export class Input extends Component {
       id,
       additionaltextid,
       label,
-      additionaltext
+      additionaltext,
+      name,
+      value
     } = this.props;
     const element =
       this.props.element === 'input' ? (
@@ -23,6 +25,7 @@ export class Input extends Component {
             id={id}
             aria-describedby={additionaltextid}
             onChange={onChange}
+            name={name}
           />
           {this.props.additionaltext && (
             <small id={additionaltextid} className="form-text text-muted">
@@ -38,6 +41,8 @@ export class Input extends Component {
             onChange={onChange}
             id={id}
             rows="3"
+            name={name}
+            value={value}
           ></textarea>
         </div>
       );
