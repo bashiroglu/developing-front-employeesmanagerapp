@@ -2,10 +2,13 @@ import React from 'react';
 import uuid from 'uuid';
 import Button from '../elements/formelements/button/Button';
 
-function UserItem({ employee, confirmation }) {
-  const commingArray = confirmation
+function UserItem({ employee, existButton }) {
+  const commingArray = existButton
     ? Object.keys(employee).concat([`confirm${uuid()}`])
     : Object.keys(employee);
+  console.log(employee);
+  console.log(Object.keys(employee).concat([`confirm${uuid()}`]));
+
   return (
     <tr>
       {/* {Object.keys(employee).map(key =>
