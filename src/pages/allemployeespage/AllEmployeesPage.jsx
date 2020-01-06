@@ -7,12 +7,13 @@ export class AllEmployeesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: 'fully equiped'
+      filter: 'no equipment'
     };
   }
+
   HandleInputChange = ({ target: { value, name } }) =>
     this.setState({ [name]: value });
-
+  
   static defaultProps = {
     TableColumns: [
       'id',
@@ -22,7 +23,7 @@ export class AllEmployeesPage extends Component {
       'groupname',
       'equipmentStatus'
     ],
-    FilterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped'],
+    FilterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped','no equipment'],
     employees: [
       {
         id: '1',
