@@ -6,7 +6,7 @@ export class Input extends Component {
   //   }
   render() {
     const {
-      onClick,
+      onChange,
       type,
       id,
       additionaltextid,
@@ -22,7 +22,7 @@ export class Input extends Component {
             className="form-control"
             id={id}
             aria-describedby={additionaltextid}
-            onClick={onClick}
+            onChange={onChange}
           />
           {this.props.additionaltext && (
             <small id={additionaltextid} className="form-text text-muted">
@@ -33,7 +33,12 @@ export class Input extends Component {
       ) : (
         <div className="form-group ">
           <label htmlFor={id}>{label}</label>
-          <textarea className="form-control" id={id} rows="3"></textarea>
+          <textarea
+            className="form-control"
+            onChange={onChange}
+            id={id}
+            rows="3"
+          ></textarea>
         </div>
       );
     return element;
