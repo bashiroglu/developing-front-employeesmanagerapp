@@ -29,7 +29,9 @@ export class Header extends Component {
               <li className="nav-item ">
                 <Link className="nav-link" to="/employee-confirm">
                   New Users
-                  <span className="badge badge-primary ml-1">0</span>
+                  <span className="badge badge-light /* green if more than one */ ml-1">
+                    0
+                  </span>
                 </Link>
               </li>
               <li className="nav-item ">
