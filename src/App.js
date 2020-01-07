@@ -8,6 +8,7 @@ import SignUpUserByManagerPage from './pages/signupuserbymanagerpage/SignUpUserB
 import LoginAndSignUpPage from './pages/loginandsignuppage/LoginAndSignUpPage';
 import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmployeesPage';
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
+import NotficationPage from './pages/notficationpage/NotficationPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -48,9 +49,10 @@ export class App extends Component {
             />
             <Route
               exact
-              path="/settings"
-              component={SettingsPage}
+              path="/notfication-page"
+              component={NotficationPage}
             />
+            <Route exact path="/settings" component={SettingsPage} />
           </Switch>
         </div>
       </div>

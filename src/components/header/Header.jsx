@@ -54,6 +54,11 @@ export class Header extends Component {
                   Go to settings
                 </Link>
               </li>
+              <li className="nav-item ">
+                <Link className="nav-link" to="/notfication-page">
+                Notfication Page
+                </Link>
+              </li>
             </ul>
           </div>
           <Link className="btn-light btn ml-auto" to="/logout">
