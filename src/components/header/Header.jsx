@@ -6,16 +6,29 @@ export class Header extends Component {
     super(props);
     this.state = {
       prenewUsersNum: 5,
-      newUsersNum: 5
+      newUsersNum: 5,
+      preNewNotficationNum: 15,
+      newNotficationNum: 22
     };
   }
 
   render() {
-    const { newUsersNum, prenewUsersNum } = this.state;
+    const {
+      newUsersNum,
+      prenewUsersNum,
+      newNotficationNum,
+      preNewNotficationNum
+    } = this.state;
     const classOfBadge =
       newUsersNum === 0
         ? 'light'
         : prenewUsersNum === newUsersNum
+        ? 'primary'
+        : 'success';
+    const classOfBadgeOfNotfication =
+      newNotficationNum === 0
+        ? 'light'
+        : preNewNotficationNum === newNotficationNum
         ? 'primary'
         : 'success';
     return (
@@ -56,7 +69,12 @@ export class Header extends Component {
               </li>
               <li className="nav-item ">
                 <Link className="nav-link" to="/notfication-page">
-                Notfication Page
+                  Notfication Page
+                  <span
+                    className={`badge badge-${classOfBadgeOfNotfication} ml-1`}
+                  >
+                    {newNotficationNum}
+                  </span>
                 </Link>
               </li>
             </ul>
