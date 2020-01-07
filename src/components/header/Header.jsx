@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      prenewUsersNum: 5,
+      newUsersNum: 5
+    };
+  }
+
   render() {
+    const { newUsersNum, prenewUsersNum } = this.state;
+    const classOfBadge =
+      newUsersNum === 0
+        ? 'light'
+        : prenewUsersNum === newUsersNum
+        ? 'primary'
+        : 'success';
     return (
       <div className=" w-100">
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -29,8 +44,8 @@ export class Header extends Component {
               <li className="nav-item ">
                 <Link className="nav-link" to="/employee-confirm">
                   New Users
-                  <span className="badge badge-light /* green if more than one */ ml-1">
-                    0
+                  <span className={`badge badge-${classOfBadge} ml-1`}>
+                    {newUsersNum}
                   </span>
                 </Link>
               </li>
