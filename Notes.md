@@ -7,4 +7,10 @@ Notfication page will show all employees' actions to managers
 
 Notfication page will show all managers' actions to head-manager
 
-Download PDF button to pages, Problem is how to put
+Manager getting roport about sallary
+
+Download PDF button(and excell button) to pages, Problem is how to put(It is planned to put in form page after filter before table)
+
+Employee book shif page
+
+employee photo comp. in header
