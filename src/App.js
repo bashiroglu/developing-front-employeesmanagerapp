@@ -9,6 +9,7 @@ import LoginAndSignUpPage from './pages/loginandsignuppage/LoginAndSignUpPage';
 import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmployeesPage';
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
 import NotficationPage from './pages/notficationpage/NotficationPage';
+import ManagerListPage from './pages/managerslistpage/ManagerListPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -47,10 +48,11 @@ export class App extends Component {
               path="/employee-confirm"
               component={NewlyAddedEmployeesPage}
             />
+            <Route exact path="/notfication-page" component={NotficationPage} />
             <Route
               exact
-              path="/notfication-page"
-              component={NotficationPage}
+              path="/managers-list-page"
+              component={ManagerListPage}
             />
             <Route exact path="/settings" component={SettingsPage} />
           </Switch>

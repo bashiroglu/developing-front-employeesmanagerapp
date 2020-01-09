@@ -41,7 +41,7 @@ export class NewlyAddedUsers extends Component {
       <div>
         <Filter FilterOptions={FilterOptions} />
         <DownloadButtons />
-        <Table TableColumns={TableColumns} employees={employees} confirmation />
+        <Table TableColumns={TableColumns} employees={employees} button="confirm" />
       </div>
     );
   }
