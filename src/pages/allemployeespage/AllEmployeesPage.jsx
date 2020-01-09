@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
+import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
 export class AllEmployeesPage extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export class AllEmployeesPage extends Component {
 
   HandleInputChange = ({ target: { value, name } }) =>
     this.setState({ [name]: value });
-  
+
   static defaultProps = {
     TableColumns: [
       'id',
@@ -23,7 +24,12 @@ export class AllEmployeesPage extends Component {
       'groupname',
       'equipmentStatus'
     ],
-    FilterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped','no equipment'],
+    FilterOptions: [
+      'fully equiped',
+      't-shirt equiped',
+      'shoes equiped',
+      'no equipment'
+    ],
     employees: [
       {
         id: '1',
@@ -56,6 +62,7 @@ export class AllEmployeesPage extends Component {
           name="filterSelect"
           value={this.state.selected}
         />
+        <DownloadButtons />
         <Table TableColumns={TableColumns} employees={employees} />
       </div>
     );

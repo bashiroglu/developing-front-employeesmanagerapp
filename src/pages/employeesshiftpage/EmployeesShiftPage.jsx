@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
+import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
 export class EmployeesShiftPage extends Component {
   static defaultProps = {
@@ -35,6 +36,7 @@ export class EmployeesShiftPage extends Component {
     return (
       <div>
         <Filter FilterOptions={FilterOptions} />
+        <DownloadButtons />
         <Table TableColumns={TableColumns} employees={employees} />
       </div>
     );
