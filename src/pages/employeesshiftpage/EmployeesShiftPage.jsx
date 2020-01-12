@@ -19,8 +19,7 @@ export class EmployeesShiftPage extends Component {
       '6:00-14:00',
       '14:00-22:00',
       '22:00-6:00'
-    ]
-    /* ,
+    ],
     employees: [
       {
         id: '1',
@@ -36,25 +35,17 @@ export class EmployeesShiftPage extends Component {
         shift: '22:00-6:00',
         username: 'hasanmurad'
       }
-    ] */
+    ]
   };
-  getEmployees() {}
-  componentDidMount() {
-    fetch('http://localhost:3003/api/v1/users')
-      .then(response => response.json())
-      .then(response => {
-        console.log(response.users);
-        this.setState({ employees: response.users });
-      });
-  }
+
   render() {
-    // const { employees } = this.state;
-    const { FilterOptions, TableColumns } = this.props;
+    // const {  } = this.state;
+    const { FilterOptions, TableColumns, employees } = this.props;
     return (
       <div>
         <Filter FilterOptions={FilterOptions} />
         <DownloadButtons />
-        <Table TableColumns={TableColumns} employees={this.state.employees} />
+        <Table TableColumns={TableColumns} employees={employees} />
       </div>
     );
   }
