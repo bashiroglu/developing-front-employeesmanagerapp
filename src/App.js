@@ -5,6 +5,7 @@ import Header from './components/header/Header';
 import AllUsersPage from './pages/allemployeespage/AllEmployeesPage';
 import EmployeesShiftPage from './pages/employeesshiftpage//EmployeesShiftPage';
 import SignUpUserByManagerPage from './pages/signupuserbymanagerpage/SignUpUserByManagerPage';
+import BookShiftPage from './pages/bookshiftpage/BookShiftPage';
 import LoginAndSignUpPage from './pages/loginandsignuppage/LoginAndSignUpPage';
 import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmployeesPage';
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
@@ -54,6 +55,7 @@ export class App extends Component {
               path="/managers-list-page"
               component={ManagerListPage}
             />
+            <Route exact path="/book-shift-page" component={BookShiftPage} />
             <Route exact path="/settings" component={SettingsPage} />
           </Switch>
         </div>
