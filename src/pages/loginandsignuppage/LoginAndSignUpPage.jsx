@@ -3,6 +3,14 @@ import Login from '../../components/login/Login';
 import SignUp from '../../components/signup/SignUp';
 
 export class LoginAndSignUpPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
+
   render() {
     return (
       <div className="container mt-5">
