@@ -1,9 +1,9 @@
-import { createContext } from 'react';
+// import { createContext } from 'react';
+// import useAuthState from '../hooks/useAuthState';
 
-export const AuthContext = createContext({
-  isLoggedIn: false,
-  userId: null,
-  token: null,
-  login: () => {},
-  logout: () => {}
-});
+// export const AuthContext = createContext();
+
+// export function AuthProvider() {
+//   const userObject = useAuthState('');
+//   <AuthContext.Provider></AuthContext.Provider>
+// }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+// import { AuthProvider } from './utils/context/authContext';
+
 import Header from './components/header/Header';
 import AllUsersPage from './pages/allemployeespage/AllEmployeesPage';
 import EmployeesShiftPage from './pages/employeesshiftpage//EmployeesShiftPage';
@@ -16,7 +18,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div>
+      {/* <AuthProvider> */}
       <Header />
+      {/* </AuthProvider> */}
       <Switch>
         <Route exact path="/employees-list" component={AllUsersPage} />
         <Route exact path="/employees-shifts" component={EmployeesShiftPage} />
