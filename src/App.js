@@ -11,7 +11,6 @@ import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmp
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
 import NotficationPage from './pages/notficationpage/NotficationPage';
 import ManagerListPage from './pages/managerslistpage/ManagerListPage';
-// import AuthContext from './utils/context/authContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
