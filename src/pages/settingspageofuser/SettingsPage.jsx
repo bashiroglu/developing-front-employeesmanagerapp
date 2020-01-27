@@ -17,7 +17,6 @@ function SettingsPage() {
             element="input"
             additionaltextid="notifythatyouwillneed"
             additionaltext="Please provide valid email for security purposes"
-            onChange={this.HandleInputChange}
           />
           <Input label="Name" type="text" id="name" element="input" />
           <Input
@@ -28,7 +27,6 @@ function SettingsPage() {
             element="input"
             additionaltextid="groupnamefromagency"
             additionaltext="You can get your groupname from your agency"
-            onChange={this.HandleInputChange}
           />
           <Input
             label="Provide your shoe size"
@@ -38,7 +36,6 @@ function SettingsPage() {
             element="input"
             additionaltextid="shoetext"
             additionaltext="We need this information to provide you with shoes"
-            onChange={this.HandleInputChange}
           />
           <Input
             label="Provide your body size"
@@ -48,7 +45,6 @@ function SettingsPage() {
             element="input"
             additionaltextid="bodytext"
             additionaltext="We need this information to provide you with T-shirt"
-            onChange={this.HandleInputChange}
           />
           <Button classes="mx-3 btn-success">Update</Button>
           {/* <Button classes=" mx-3 btn-success">Sign Up all users</Button> */}
@@ -61,7 +57,6 @@ function SettingsPage() {
             name="password"
             id="password"
             element="input"
-            onChange={this.HandleInputChange}
           />
           <Input
             label="New Password"
@@ -69,7 +64,6 @@ function SettingsPage() {
             id="newpassword"
             name="newpassword"
             element="input"
-            onChange={this.HandleInputChange}
           />
           <Input
             label="New Password Confirm"
@@ -77,7 +71,6 @@ function SettingsPage() {
             id="newPasswordConfirm"
             name="newPasswordConfirm"
             element="input"
-            onChange={this.HandleInputChange}
           />
 
           <Button classes=" mx-3 btn-success">Update Password</Button>

@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
 function AllEmployeesPage({ employees, FilterOptions, TableColumns }) {
+  useEffect(() => {
+    async function getEmployees() {
+      fetch('http://localhost:3003/api/v1/users')
+        .then(response => response.json())
+        .then(response => {
+          console.log(response.users);
+        });
+    }
+    getEmployees();
+  });
   return (
     <div>
       <Filter FilterOptions={FilterOptions} name="filterSelect" />

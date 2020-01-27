@@ -7,7 +7,7 @@ import Button from '../../components/elements/formelements/button/Button';
 function SignUpUserByManagerPage() {
   const [fullName, handleFullName] = useInputState('');
   const [emails, handleEmails] = useInputState('');
-  console.log(fullName, emails);
+
   return (
     <div>
       <form className="container mt-4">

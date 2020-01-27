@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/header/Header';
@@ -11,58 +11,38 @@ import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmp
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
 import NotficationPage from './pages/notficationpage/NotficationPage';
 import ManagerListPage from './pages/managerslistpage/ManagerListPage';
-import AuthContext from './utils/context/authContext';
-
+// import AuthContext from './utils/context/authContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      num: 1
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <div>
-          <Header />
-          <Switch>
-            <Route exact path="/employees-list" component={AllUsersPage} />
-            <Route
-              exact
-              path="/employees-shifts"
-              component={EmployeesShiftPage}
-            />
-            <Route
-              exact
-              path="/sign-up-user-by-manager"
-              component={SignUpUserByManagerPage}
-            />
-            <Route
-              exact
-              path="/sign-up-or-sign-in"
-              component={LoginAndSignUpPage}
-            />
-            <Route
-              exact
-              path="/employee-confirm"
-              component={NewlyAddedEmployeesPage}
-            />
-            <Route exact path="/notfication-page" component={NotficationPage} />
-            <Route
-              exact
-              path="/managers-list-page"
-              component={ManagerListPage}
-            />
-            <Route exact path="/book-shift-page" component={BookShiftPage} />
-            <Route exact path="/settings" component={SettingsPage} />
-          </Switch>
-        </div>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/employees-list" component={AllUsersPage} />
+        <Route exact path="/employees-shifts" component={EmployeesShiftPage} />
+        <Route
+          exact
+          path="/sign-up-user-by-manager"
+          component={SignUpUserByManagerPage}
+        />
+        <Route
+          exact
+          path="/sign-up-or-sign-in"
+          component={LoginAndSignUpPage}
+        />
+        <Route
+          exact
+          path="/employee-confirm"
+          component={NewlyAddedEmployeesPage}
+        />
+        <Route exact path="/notfication-page" component={NotficationPage} />
+        <Route exact path="/managers-list-page" component={ManagerListPage} />
+        <Route exact path="/book-shift-page" component={BookShiftPage} />
+        <Route exact path="/settings" component={SettingsPage} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;
