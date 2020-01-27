@@ -1,15 +1,38 @@
 import React from 'react';
+import axios from 'axios';
+
 import Input from './../elements/formelements/input/Input';
 import Button from './../elements/formelements/button/Button';
 import useInputState from '../../utils/hooks/useInputState';
+import useAuthState from '../../utils/hooks/useAuthState';
 
 function SignUp() {
+  const [user, setUser] = useAuthState('');
   const [email, handleEmail] = useInputState('');
   const [password, handlePassword] = useInputState('');
   const [groupname, handleGroupname] = useInputState('');
   const [passwordConfirm, handlePasswordConfirm] = useInputState('');
+  async function handleSignUpSubmit(e) {
+    e.preventDefault();
+    const response = await axios.post(
+      'http://localhost:3003/api/v1/users/signup',
+      {
+        name: groupname,
+        email: email,
+        password: password
+      }
+    );
+    setUser({
+      token: response.data.token,
+      email: response.data.email,
+      userid: response.data.userId
+    });
+    console.log(user);
+
+    console.log(response.data.token, response.data.userId, response.data.email);
+  }
   return (
-    <form>
+    <form onSubmit={handleSignUpSubmit}>
       <h2>I don't have account</h2>
       <Input
         label="Email"

@@ -1,14 +1,18 @@
 import React from 'react';
 import useInputState from '../../utils/hooks/useInputState';
-
+import useAuthState from '../../utils/hooks/useAuthState';
 import Input from './../elements/formelements/input/Input';
 import Button from './../elements/formelements/button/Button';
 
 function Login() {
   const [email, handleEmail] = useInputState('');
   const [password, handlePassword] = useInputState('');
+  function handleLoginSubmit(e) {
+    e.preventDefault();
+    console.log('hellohandleLoginSubmit');
+  }
   return (
-    <form>
+    <form onSubmit={handleLoginSubmit}>
       <h2>I have already account</h2>
       <Input
         label="Email"
