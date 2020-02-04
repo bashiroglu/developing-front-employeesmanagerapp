@@ -38,7 +38,7 @@ function App() {
         />
 
         <Route exact path="/managers-list-page" component={ManagerListPage} />
-        <Route exact path="/book-shift-page" component={BookShiftPage} />
+        <Route exact path="/bookshift" component={BookShiftPage} />
         <Route exact path="/settings" component={SettingsPage} />
       </Switch>
     </div>
