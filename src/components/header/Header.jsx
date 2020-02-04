@@ -37,12 +37,12 @@ function Header() {
                 Go to settings
               </Link>
             </li>
-            <li className="nav-item ">
+            {/* <li className="nav-item ">
               <Link className="nav-link" to="/notfication-page">
                 Notfication Page
                 <span className={`badge badge- ml-1`}></span>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <Link className="btn-light btn ml-auto" to="/logout">

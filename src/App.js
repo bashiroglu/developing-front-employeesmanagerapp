@@ -11,7 +11,6 @@ import BookShiftPage from './pages/bookshiftpage/BookShiftPage';
 import LoginAndSignUpPage from './pages/loginandsignuppage/LoginAndSignUpPage';
 import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmployeesPage';
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
-import NotficationPage from './pages/notficationpage/NotficationPage';
 import ManagerListPage from './pages/managerslistpage/ManagerListPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -39,7 +38,7 @@ function App() {
           path="/employee-confirm"
           component={NewlyAddedEmployeesPage}
         />
-        <Route exact path="/notfication-page" component={NotficationPage} />
+
         <Route exact path="/managers-list-page" component={ManagerListPage} />
         <Route exact path="/book-shift-page" component={BookShiftPage} />
         <Route exact path="/settings" component={SettingsPage} />
