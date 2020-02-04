@@ -8,7 +8,8 @@ import AllUsersPage from './pages/allemployeespage/AllEmployeesPage';
 import EmployeesShiftPage from './pages/employeesshiftpage//EmployeesShiftPage';
 import SignUpUserByManagerPage from './pages/signupuserbymanagerpage/SignUpUserByManagerPage';
 import BookShiftPage from './pages/bookshiftpage/BookShiftPage';
-import LoginAndSignUpPage from './pages/loginandsignuppage/LoginAndSignUpPage';
+import LoginPage from './pages/loginpage/LoginPage';
+import SignUpPage from './pages/signuppage/SignUpPage';
 import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmployeesPage';
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
 import ManagerListPage from './pages/managerslistpage/ManagerListPage';
@@ -28,11 +29,8 @@ function App() {
           path="/sign-up-user-by-manager"
           component={SignUpUserByManagerPage}
         />
-        <Route
-          exact
-          path="/sign-up-or-sign-in"
-          component={LoginAndSignUpPage}
-        />
+        <Route exact path="/sign-in" component={LoginPage} />
+        <Route exact path="/sign-up" component={SignUpPage} />
         <Route
           exact
           path="/employee-confirm"

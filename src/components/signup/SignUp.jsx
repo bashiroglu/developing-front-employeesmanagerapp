@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import Input from './../elements/formelements/input/Input';
 import Button from './../elements/formelements/button/Button';
@@ -74,7 +75,12 @@ function SignUp() {
         value={groupname}
         onChange={handleGroupname}
       />
-      <Button classes=" mx-3 btn-success">Sign up</Button>
+      <div className="row">
+        <Button classes=" mx-3 btn-success">Sign up</Button>
+        <Link className="nav-link" to="/sign-in">
+          I do have account
+        </Link>
+      </div>
     </form>
   );
 }

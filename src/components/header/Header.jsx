@@ -22,7 +22,7 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/sign-up-user-by-manager">
+              <Link className="nav-link" to="/sign-up">
                 User Sign Up
               </Link>
             </li>
