@@ -7,7 +7,6 @@ import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
 function AllEmployeesPage({ FilterOptions, TableColumns }) {
   const [employees, setEmployees] = useState([]);
-  
 
   useEffect(() => {
     async function getData() {
@@ -17,7 +16,7 @@ function AllEmployeesPage({ FilterOptions, TableColumns }) {
     getData();
   }, []);
 
-// console.log(employees);
+  // console.log(employees);
 
   return (
     <div>
