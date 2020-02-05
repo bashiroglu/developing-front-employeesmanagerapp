@@ -1,6 +1,8 @@
 import React from 'react';
 import Input from '../elements/formelements/input/Input';
 
+import SelectInput from '../elements/formelements/input/SelectInput';
+
 function Filter({ FilterOptions, name, value, onChange }) {
   return (
     <div className="container my-3">
@@ -8,14 +10,14 @@ function Filter({ FilterOptions, name, value, onChange }) {
         <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
           Bring
         </label>
-        <Input
+        <SelectInput
           id="filterselect"
           name={name}
           onChange={onChange}
-          FilterOptions={FilterOptions}
+          filterOptions={FilterOptions}
           value={value}
-          element="select"
         />
+
         <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
           employees
         </label>

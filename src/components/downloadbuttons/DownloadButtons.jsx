@@ -1,18 +1,16 @@
 import React from 'react';
 
-import Input from '../../components/elements/formelements/input/Input';
 import Button from '../../components/elements/formelements/button/Button';
+import SelectInput from '../elements/formelements/input/SelectInput';
 
 function DownloadButtons() {
   return (
     <form className="form-inline container mb-4">
-      <Input
+      <SelectInput
         id="filterselect"
         name="filterselect"
-        // onChange={onChange}
-        FilterOptions={['Export as a pdf file', 'Export as a excell file']}
-        // value={value}
         element="select"
+        filterOptions={['Export as a pdf file', 'Export as a excell file']}
       />
       <Button type="submit" classes="ml-auto  btn-success">
         Download
