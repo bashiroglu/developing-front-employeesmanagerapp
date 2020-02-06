@@ -16,7 +16,7 @@ Download PDF button(and excell button) to pages, Problem is how to put(It is pla
 Employee book shift page
 
 - date picker
-add funct of displaying the day of week after select
+    add funct of displaying the day of week after select(done)
 
 
 employee photo comp. in header
