@@ -7,8 +7,9 @@ import SelectInput from '../../components/elements/formelements/input/SelectInpu
 import Button from '../../components/elements/formelements/button/Button';
 
 function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
+  const [loading, setLoading] = useState(false);
   const [shiftDate, setShiftDate] = useState(new Date());
-  const [shiftType, setShiftType] = useState('12 hours');
+  const [shiftType, setShiftType] = useState('8 hours');
   const [fullname, setFullname] = useState('Abdulla Bashir2');
   const [username, setUsername] = useState('bashir');
   const [shift, setShift] = useState('6:00-18:00');
@@ -22,13 +23,17 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
         username,
         shift
       });
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
   const handleSubmit = e => {
     e.preventDefault();
+    setLoading(true);
     createShift();
+    setShiftType('8 hours');
+    setShift('6:00-18:00');
   };
 
   return (
@@ -73,8 +78,12 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
             onChange={e => setShift(e.target.value)}
             filterOptions={filterOptionsShift}
           />
-          <Button type="submit" classes="ml-auto  btn-success">
-            Book shift
+          <Button
+            disabled={loading}
+            type="submit"
+            classes={loading ? 'ml-auto  btn-danger' : 'ml-auto  btn-success'}
+          >
+            {loading ? 'Booking your shift' : 'Book shift'}
           </Button>
         </form>
       </div>
