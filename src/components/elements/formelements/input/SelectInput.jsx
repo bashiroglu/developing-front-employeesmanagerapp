@@ -1,8 +1,9 @@
 import React from 'react';
 
-function SelectInput({ name, value, filterOptions, onChange }) {
+function SelectInput({ name, value, filterOptions, onChange,disabled }) {
   return (
     <select
+      disabled={disabled}
       name={name}
       value={value}
       onChange={onChange}

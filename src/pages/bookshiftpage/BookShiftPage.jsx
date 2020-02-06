@@ -57,6 +57,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
             name="username"
             onChange={e => setUsername(e.target.value)}
             value={username}
+            disabled={true}
           />
           <Input
             element
@@ -64,6 +65,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
             name="fullname"
             onChange={e => setFullname(e.target.value)}
             value={fullname}
+            disabled={true}
           />
 
           <SelectInput

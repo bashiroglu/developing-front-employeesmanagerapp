@@ -9,12 +9,14 @@ function Input({
   additionaltext,
   name,
   value,
-  element
+  element,
+  disabled
 }) {
   const renderElement = element ? (
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
       <input
+        disabled={disabled}
         value={value}
         type={type}
         className="form-control"
