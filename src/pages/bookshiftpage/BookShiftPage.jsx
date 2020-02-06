@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -40,6 +40,12 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
             onChange={setShiftDate}
             onChangeRaw={e => e.preventDefault()}
           />
+          <p>
+            The day you chose for shift:{' '}
+            <span className="text-primary">
+              {shiftDate.toLocaleString('en-us', { weekday: 'long' })}
+            </span>
+          </p>
           <Input
             element
             type="text"

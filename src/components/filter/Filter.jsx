@@ -1,5 +1,4 @@
 import React from 'react';
-import Input from '../elements/formelements/input/Input';
 
 import SelectInput from '../elements/formelements/input/SelectInput';
 
