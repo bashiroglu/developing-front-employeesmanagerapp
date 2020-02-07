@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 // import { AuthContext } from '../../utils/context/authContext';
 
 function Header() {
@@ -7,35 +7,35 @@ function Header() {
     <div className=" w-100">
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <a className="navbar-brand" href="#d">
-          Navbar
+          Employee Manager
         </a>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <Link className="nav-link" to="/employees-list">
+              <NavLink className="nav-link" to="/employees-list">
                 All Emplooyes
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/employees-shifts">
+              <NavLink className="nav-link" to="/employees-shifts">
                 Emplooyes shift page
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/sign-up">
+              <NavLink className="nav-link" to="/sign-up">
                 User Sign Up
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/employee-confirm">
+              <NavLink className="nav-link" to="/employee-confirm">
                 New Users
                 <span className={`badge badge- ml-1`}></span>
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/settings">
+              <NavLink className="nav-link" to="/settings">
                 Go to settings
-              </Link>
+              </NavLink>
             </li>
             {/* <li className="nav-item ">
               <Link className="nav-link" to="/notfication-page">
