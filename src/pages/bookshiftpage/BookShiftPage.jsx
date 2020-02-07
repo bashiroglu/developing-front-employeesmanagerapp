@@ -27,6 +27,10 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
     getBookings();
   }, [needRefresh, username]);
 
+  const refreshBookings = () => {
+    setNeedRefresh(!needRefresh);
+  };
+
   const createShift = async () => {
     try {
       await axios.post('http://localhost:3003/api/v1/bookings', {
@@ -42,6 +46,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
       console.log(error);
     }
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     setLoading(true);
@@ -53,7 +58,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
   return (
     <div className="container">
       <div className="row">
-        <form className="col-8 mt-5" onSubmit={handleSubmit}>
+        <form className="col-7 mt-5" onSubmit={handleSubmit}>
           <DatePicker
             selected={shiftDate ? new Date(shiftDate) : null}
             onChange={setShiftDate}
@@ -103,9 +108,13 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
           </Button>
         </form>
         {bookings ? (
-          <ul className="list-group mt-5 col-4">
+          <ul className="list-group mt-5 col-5">
             {bookings.map(booking => (
-              <ShiftItem booking={booking} />
+              <ShiftItem
+                refresher={refreshBookings}
+                booking={booking}
+                key={booking._id}
+              />
             ))}
           </ul>
         ) : null}
