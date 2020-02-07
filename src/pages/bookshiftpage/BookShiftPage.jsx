@@ -5,8 +5,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Input from '../../components/elements/formelements/input/Input';
 import SelectInput from '../../components/elements/formelements/input/SelectInput';
 import Button from '../../components/elements/formelements/button/Button';
+import ShiftItem from '../../components/bookedshiftitem/ShiftItem';
 
 function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
+  const [needRefresh, setNeedRefresh] = useState(false);
   const [bookings, setBookings] = useState(false);
   const [loading, setLoading] = useState(false);
   const [shiftDate, setShiftDate] = useState(new Date());
@@ -23,7 +25,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
       console.log(response.data.bookings);
     }
     getBookings();
-  }, []);
+  }, [needRefresh, username]);
 
   const createShift = async () => {
     try {
@@ -35,6 +37,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
         shift
       });
       setLoading(false);
+      setNeedRefresh(!needRefresh);
     } catch (error) {
       console.log(error);
     }
@@ -102,22 +105,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
         {bookings ? (
           <ul className="list-group mt-5 col-4">
             {bookings.map(booking => (
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                {new Date(booking.date).toLocaleString('en-us', {
-                  weekday: 'long'
-                })}
-                <span class="badge badge-primary badge-pill">
-                  {booking.shiftType}
-                </span>
-                <span class="badge badge-primary badge-pill">
-                  {booking.shift}
-                </span>
-                <span class="badge badge-primary badge-pill">
-                  {`${new Date(booking.date).getDate()} ${new Date(
-                    booking.date
-                  ).toLocaleString('en-us', { month: 'long' })}`}
-                </span>
-              </li>
+              <ShiftItem booking={booking} />
             ))}
           </ul>
         ) : null}
