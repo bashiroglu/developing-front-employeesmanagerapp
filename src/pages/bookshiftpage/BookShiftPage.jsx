@@ -13,7 +13,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
   const [loading, setLoading] = useState(false);
   const [shiftDate, setShiftDate] = useState(new Date());
   const [shiftType, setShiftType] = useState('8 hours');
-  const [fullname, setFullname] = useState('Abdulla Bashir2');
+
   const [username, setUsername] = useState('Bashiroglu');
   const [shift, setShift] = useState('6:00-18:00');
   useEffect(() => {
@@ -35,10 +35,10 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
     try {
       await axios.post('http://localhost:3003/api/v1/bookings', {
         date: shiftDate,
-        shiftType,
-        fullname,
+        fullname: 'Abdulla Bashir',
         username,
-        shift
+        shift,
+        shiftType: '8 hours'
       });
       setLoading(false);
       setNeedRefresh(!needRefresh);
@@ -78,21 +78,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
             value={username}
             disabled={true}
           />
-          <Input
-            element
-            type="text"
-            name="fullname"
-            onChange={e => setFullname(e.target.value)}
-            value={fullname}
-            disabled={true}
-          />
 
-          <SelectInput
-            name="shiftType"
-            value={shiftType}
-            filterOptions={filterOptionsShiftType}
-            onChange={e => setShiftType(e.target.value)}
-          />
           <SelectInput
             name="shift"
             value={shift}
@@ -102,7 +88,11 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
           <Button
             disabled={loading}
             type="submit"
-            classes={loading ? 'ml-auto  btn-danger' : 'ml-auto  btn-success'}
+            classes={
+              loading
+                ? ' my-2 ml-auto  btn-danger'
+                : 'my-2 l-auto  btn-success'
+            }
           >
             {loading ? 'Booking your shift' : 'Book shift'}
           </Button>

@@ -9,13 +9,13 @@ function ShiftItem({ booking, refresher }) {
       await axios.delete(
         `http://localhost:3003/api/v1/bookings/${booking._id}`
       );
+      refresher();
     } catch (error) {
       console.log(error);
     }
   };
   const handleClick = () => {
     deleteShift();
-    refresher();
   };
   return (
     <li className=" list-group-item d-flex justify-content-between align-items-center">
@@ -25,7 +25,9 @@ function ShiftItem({ booking, refresher }) {
       <span className="badge mx-1 badge-primary badge-pill">
         {booking.shiftType}
       </span>
-      <span className="badge mx-1 badge-primary badge-pill">{booking.shift}</span>
+      <span className="badge mx-1 badge-primary badge-pill">
+        {booking.shift}
+      </span>
       <span className="badge mx-1 badge-primary badge-pill">
         {`${new Date(booking.date).getDate()} ${new Date(
           booking.date
