@@ -30,6 +30,12 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
   const refreshBookings = () => {
     setNeedRefresh(!needRefresh);
   };
+  const getShiftType = givenShift => {
+    if (givenShift === '6:00-18:00' || givenShift === '18:00-6:00') {
+      return '12 hours';
+    }
+    return '8 hours';
+  };
 
   const createShift = async () => {
     try {
@@ -38,7 +44,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
         fullname: 'Abdulla Bashir',
         username,
         shift,
-        shiftType: '8 hours'
+        shiftType: getShiftType(shift)
       });
       setLoading(false);
       setNeedRefresh(!needRefresh);
@@ -89,9 +95,7 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
             disabled={loading}
             type="submit"
             classes={
-              loading
-                ? ' my-2 ml-auto  btn-danger'
-                : 'my-2 l-auto  btn-success'
+              loading ? ' my-2 ml-auto  btn-danger' : 'my-2 l-auto  btn-success'
             }
           >
             {loading ? 'Booking your shift' : 'Book shift'}
