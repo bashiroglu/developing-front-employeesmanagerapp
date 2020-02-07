@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -7,12 +7,23 @@ import SelectInput from '../../components/elements/formelements/input/SelectInpu
 import Button from '../../components/elements/formelements/button/Button';
 
 function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
+  const [bookings, setBookings] = useState(false);
   const [loading, setLoading] = useState(false);
   const [shiftDate, setShiftDate] = useState(new Date());
   const [shiftType, setShiftType] = useState('8 hours');
   const [fullname, setFullname] = useState('Abdulla Bashir2');
-  const [username, setUsername] = useState('bashir');
+  const [username, setUsername] = useState('Bashiroglu');
   const [shift, setShift] = useState('6:00-18:00');
+  useEffect(() => {
+    async function getBookings() {
+      const response = await axios.get(
+        `http://localhost:3003/api/v1/bookings/${username}`
+      );
+      setBookings(response.data.bookings);
+      console.log(response.data.bookings);
+    }
+    getBookings();
+  }, []);
 
   const createShift = async () => {
     try {
@@ -88,6 +99,28 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
             {loading ? 'Booking your shift' : 'Book shift'}
           </Button>
         </form>
+        {bookings ? (
+          <ul className="list-group mt-5 col-4">
+            {bookings.map(booking => (
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {new Date(booking.date).toLocaleString('en-us', {
+                  weekday: 'long'
+                })}
+                <span class="badge badge-primary badge-pill">
+                  {booking.shiftType}
+                </span>
+                <span class="badge badge-primary badge-pill">
+                  {booking.shift}
+                </span>
+                <span class="badge badge-primary badge-pill">
+                  {`${new Date(booking.date).getDate()} ${new Date(
+                    booking.date
+                  ).toLocaleString('en-us', { month: 'long' })}`}
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </div>
   );
