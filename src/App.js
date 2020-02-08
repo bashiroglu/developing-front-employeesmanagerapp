@@ -24,29 +24,30 @@ function App() {
   if (userObject.token) {
     routes = (
       <React.Fragment>
-        
-
         <Switch>
-          <Route exact path="/employees-list" component={AllUsersPage} />
-          <Route
-            exact
-            path="/employees-shifts"
-            component={EmployeesShiftPage}
-          />
-          <Route
-            exact
-            path="/sign-up-user-by-manager"
-            component={SignUpUserByManagerPage}
-          />
+          <Route exact path="/employees-list">
+            <AllUsersPage />
+          </Route>
+          <Route exact path="/employees-shifts">
+            <EmployeesShiftPage />
+          </Route>
+          <Route exact path="/sign-up-user-by-manager">
+            <SignUpUserByManagerPage />
+          </Route>
+          <Route exact path="/employee-confirm">
+            <NewlyAddedEmployeesPage />
+          </Route>
+          <Route exact path="/managers-list-page">
+            <ManagerListPage />
+          </Route>
+          <Route exact path="/bookshift">
+            <BookShiftPage />
+          </Route>
+          <Route exact path="/settings">
+            <SettingsPage />
+          </Route>
 
-          <Route
-            exact
-            path="/employee-confirm"
-            component={NewlyAddedEmployeesPage}
-          />
-          <Route exact path="/managers-list-page" component={ManagerListPage} />
-          <Route exact path="/bookshift" component={BookShiftPage} />
-          <Route exact path="/settings" component={SettingsPage} />
+
           <Redirect to="/sign-in" />
         </Switch>
       </React.Fragment>
