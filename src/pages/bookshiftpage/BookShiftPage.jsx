@@ -7,13 +7,11 @@ import SelectInput from '../../components/elements/formelements/input/SelectInpu
 import Button from '../../components/elements/formelements/button/Button';
 import ShiftItem from '../../components/bookedshiftitem/ShiftItem';
 
-function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
+function BookShiftPage({ filterOptionsShift }) {
   const [needRefresh, setNeedRefresh] = useState(false);
   const [bookings, setBookings] = useState(false);
   const [loading, setLoading] = useState(false);
   const [shiftDate, setShiftDate] = useState(new Date());
-  const [shiftType, setShiftType] = useState('8 hours');
-
   const [username, setUsername] = useState('Bashiroglu');
   const [shift, setShift] = useState('6:00-18:00');
   useEffect(() => {
@@ -57,7 +55,6 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
     e.preventDefault();
     setLoading(true);
     createShift();
-    setShiftType('8 hours');
     setShift('6:00-18:00');
   };
 
@@ -117,7 +114,6 @@ function BookShiftPage({ filterOptionsShiftType, filterOptionsShift }) {
   );
 }
 BookShiftPage.defaultProps = {
-  filterOptionsShiftType: ['12 hours', '8 hours'],
   filterOptionsShift: [
     '6:00-18:00',
     '18:00-6:00',
