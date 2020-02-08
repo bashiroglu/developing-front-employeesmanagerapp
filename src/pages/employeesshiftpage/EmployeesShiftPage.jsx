@@ -26,6 +26,8 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
     return booking.shift === shift;
   });
   const createAndDownloadPdf = async (req, res) => {
+    console.log(bookings);
+
     await axios.post('http://localhost:3003/api/v1/pdf', { bookings });
     const response = await axios.get('http://localhost:3003/api/v1/pdf', {
       responseType: 'blob'
@@ -34,7 +36,10 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
       type: 'application/pdf'
     });
 
-    saveAs(pdfBlob, `Shiftsfor(${new Date(shiftDate).toLocaleDateString()}).pdf`);
+    saveAs(
+      pdfBlob,
+      `Shiftsfor(${new Date(shiftDate).toLocaleDateString()}).pdf`
+    );
   };
   console.log(filteredBookings);
   return (
