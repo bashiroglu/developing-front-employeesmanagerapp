@@ -1,11 +1,11 @@
 import React from 'react';
 import Table from '../../components/table/Table';
 
-function ManagerListPage({ TableColumns, managers }) {
+function ManagerListPage({ tableColumns, managers }) {
   return (
     <div>
       <Table
-        TableColumns={TableColumns}
+        tableColumns={tableColumns}
         employees={managers}
         button="deactivate"
       />
@@ -13,7 +13,7 @@ function ManagerListPage({ TableColumns, managers }) {
   );
 }
 ManagerListPage.defaultProps = {
-  TableColumns: ['id', 'name', 'surname', 'position', 'button'],
+  tableColumns: ['id', 'name', 'surname', 'position', 'button'],
   managers: [
     {
       id: '1',

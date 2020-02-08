@@ -4,13 +4,13 @@ import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
-function NewlyAddedEmployeesPage({ FilterOptions, TableColumns, employees }) {
+function NewlyAddedEmployeesPage({ filterOptions, tableColumns, employees }) {
   return (
     <div>
-      <Filter FilterOptions={FilterOptions} />
+      <Filter filterOptions={filterOptions} />
       <DownloadButtons />
       <Table
-        TableColumns={TableColumns}
+        tableColumns={tableColumns}
         employees={employees}
         button="confirm"
       />
@@ -18,7 +18,7 @@ function NewlyAddedEmployeesPage({ FilterOptions, TableColumns, employees }) {
   );
 }
 NewlyAddedEmployeesPage.defaultProps = {
-  TableColumns: [
+  tableColumns: [
     'id',
     'name',
     'surname',
@@ -27,7 +27,7 @@ NewlyAddedEmployeesPage.defaultProps = {
     'equipmentStatus',
     'confirm'
   ],
-  FilterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped'],
+  filterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped'],
   employees: [
     {
       id: '1',

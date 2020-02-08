@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import SelectInput from '../elements/formelements/input/SelectInput';
 
 function Filter({
-  FilterOptions,
+  filterOptions,
   name,
   datepicker,
   labelContent,
@@ -27,7 +27,7 @@ function Filter({
           id="filterselect"
           name={name}
           onChange={e => setShift(e.target.value)}
-          filterOptions={FilterOptions}
+          filterOptions={filterOptions}
           value={shift}
         />
 

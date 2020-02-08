@@ -5,7 +5,7 @@ import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
-function EmployeesShiftPage({ FilterOptions, TableColumns }) {
+function EmployeesShiftPage({ filterOptions, tableColumns }) {
   const [shift, setShift] = useState('6:00-18:00');
   const [shiftDate, setShiftDate] = useState(new Date());
   const [bookings, setBookings] = useState([]);
@@ -31,18 +31,18 @@ function EmployeesShiftPage({ FilterOptions, TableColumns }) {
         setShift={setShift}
         shiftDate={shiftDate}
         setShiftDate={setShiftDate}
-        FilterOptions={FilterOptions}
+        filterOptions={filterOptions}
         datepicker
         labelContent="employees shift for this date"
       />
       <DownloadButtons />
-      <Table TableColumns={TableColumns} bookings={filteredBookings} />
+      <Table tableColumns={tableColumns} bookings={filteredBookings} />
     </div>
   );
 }
 EmployeesShiftPage.defaultProps = {
-  TableColumns: ['_id', 'fullname', 'username', 'shiftType', 'shift'],
-  FilterOptions: [
+  tableColumns: ['_id', 'fullname', 'username', 'shiftType', 'shift'],
+  filterOptions: [
     '6:00-18:00',
     '18:00-6:00',
     '6:00-14:00',

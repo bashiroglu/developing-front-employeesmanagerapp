@@ -5,7 +5,7 @@ import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
-function AllEmployeesPage({ FilterOptions, TableColumns }) {
+function AllEmployeesPage({ filterOptions, tableColumns }) {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -20,9 +20,9 @@ function AllEmployeesPage({ FilterOptions, TableColumns }) {
 
   return (
     <div>
-      <Filter FilterOptions={FilterOptions} name="filterSelect" />
+      <Filter filterOptions={filterOptions} />
       <DownloadButtons />
-      <Table TableColumns={TableColumns} employees={employees} />
+      <Table tableColumns={tableColumns} employees={employees} />
     </div>
   );
 }
@@ -37,7 +37,7 @@ function AllEmployeesPage({ FilterOptions, TableColumns }) {
 // }
 
 AllEmployeesPage.defaultProps = {
-  TableColumns: [
+  tableColumns: [
     'id',
     'name',
     'surname',
@@ -45,7 +45,7 @@ AllEmployeesPage.defaultProps = {
     'groupname',
     'equipments'
   ],
-  FilterOptions: [
+  filterOptions: [
     'fully equiped',
     't-shirt equiped',
     'shoes equiped',
