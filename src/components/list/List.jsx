@@ -2,11 +2,11 @@ import React from 'react';
 
 import ListItem from '../listItem/ListItem';
 
-function List({ bookings, TableColumns }) {
+function List({ items, TableColumns }) {
   return (
     <tbody>
-      {bookings.map(booking => {
-        return <ListItem TableColumns={TableColumns} booking={booking} />;
+      {items.map(item => {
+        return <ListItem TableColumns={TableColumns} item={item} />;
       })}
     </tbody>
   );

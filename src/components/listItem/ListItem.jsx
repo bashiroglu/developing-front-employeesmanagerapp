@@ -1,10 +1,10 @@
 import React from 'react';
 import uuid from 'uuid';
-function ListItem({ booking, TableColumns }) {
+function ListItem({ item, TableColumns }) {
   return (
     <tr key={uuid()}>
-      {Object.keys(booking).map((bookingObjKey, i) => {
-        return <td key={uuid()}>{booking[TableColumns[i]]}</td>;
+      {Object.keys(item).map((bookingObjKey, i) => {
+        return <td key={uuid()}>{item[TableColumns[i]]}</td>;
       })}
     </tr>
   );
