@@ -10,6 +10,7 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
   const [shift, setShift] = useState('6:00-18:00');
   const [shiftDate, setShiftDate] = useState(new Date());
   const [bookings, setBookings] = useState([]);
+  const [downloadType, setDownloadType] = useState('Export as a pdf file');
   useEffect(() => {
     async function getBookings() {
       const response = await axios.get(
@@ -26,22 +27,27 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
     return booking.shift === shift;
   });
   const createAndDownloadPdf = async (req, res) => {
-    console.log(bookings);
+    if (downloadType === 'Export as a pdf file') {
+      await axios.post('http://localhost:3003/api/v1/pdf', { bookings });
+      const response = await axios.get('http://localhost:3003/api/v1/pdf', {
+        responseType: 'blob'
+      });
+      const pdfBlob = await new Blob([response.data], {
+        type: 'application/pdf'
+      });
 
-    await axios.post('http://localhost:3003/api/v1/pdf', { bookings });
-    const response = await axios.get('http://localhost:3003/api/v1/pdf', {
-      responseType: 'blob'
-    });
-    const pdfBlob = await new Blob([response.data], {
-      type: 'application/pdf'
-    });
-
-    saveAs(
-      pdfBlob,
-      `Shiftsfor(${new Date(shiftDate).toLocaleDateString()}).pdf`
-    );
+      saveAs(
+        pdfBlob,
+        `Shiftsfor(${new Date(shiftDate).toLocaleDateString()}).pdf`
+      );
+    } else {
+      console.log('not implemented yet');
+    }
   };
-  console.log(filteredBookings);
+  const handleSubmit = e => {
+    e.preventDefault();
+    createAndDownloadPdf();
+  };
   return (
     <div>
       <Filter
@@ -53,9 +59,12 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
         datepicker
         labelContent="employees shift for this date"
       />
-      <DownloadButtons />
+      <DownloadButtons
+        downloadType={downloadType}
+        onChange={e => setDownloadType(e.target.value)}
+        onSubmit={handleSubmit}
+      />
       <Table tableColumns={tableColumns} bookings={filteredBookings} />
-      <button onClick={createAndDownloadPdf}>download</button>
     </div>
   );
 }
