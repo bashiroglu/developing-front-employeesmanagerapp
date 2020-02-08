@@ -7,7 +7,7 @@ import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
 function AllEmployeesPage({ filterOptions, tableColumns }) {
   const [employees, setEmployees] = useState([]);
-
+  const [equipedFilter, setEquipedFilter] = useState('');
   useEffect(() => {
     async function getData() {
       const response = await axios.get('http://localhost:3003/api/v1/users');
@@ -20,7 +20,11 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
 
   return (
     <div>
-      <Filter filterOptions={filterOptions} />
+      <Filter
+        equipedFilter={equipedFilter}
+        setEquipedFilter={setEquipedFilter}
+        filterOptions={filterOptions}
+      />
       <DownloadButtons />
       <Table tableColumns={tableColumns} employees={employees} />
     </div>

@@ -12,7 +12,9 @@ function Filter({
   shiftDate,
   setShiftDate,
   shift,
-  setShift
+  setShift,
+  setEquipedFilter,
+  equipedFilter
 }) {
   const handleSubmit = e => {
     e.preventDefault();
@@ -26,11 +28,14 @@ function Filter({
         <SelectInput
           id="filterselect"
           name={name}
-          onChange={e => setShift(e.target.value)}
+          onChange={
+            setShift
+              ? e => setShift(e.target.value)
+              : e => setEquipedFilter(e.target.value)
+          }
           filterOptions={filterOptions}
-          value={shift}
+          value={shift ? shift : equipedFilter}
         />
-
         <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
           {labelContent}
         </label>
