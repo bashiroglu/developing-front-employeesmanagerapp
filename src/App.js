@@ -14,13 +14,14 @@ import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmp
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
 import ManagerListPage from './pages/managerslistpage/ManagerListPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AuthProvider } from './utils/context/authContext';
 
 function App() {
   return (
-    <div>
-      {/* <AuthProvider> */}
-      <Header />
-      {/* </AuthProvider> */}
+    <React.Fragment>
+      <AuthProvider>
+        <Header />
+      </AuthProvider>
       <Switch>
         <Route exact path="/employees-list" component={AllUsersPage} />
         <Route exact path="/employees-shifts" component={EmployeesShiftPage} />
@@ -29,8 +30,11 @@ function App() {
           path="/sign-up-user-by-manager"
           component={SignUpUserByManagerPage}
         />
-        <Route exact path="/sign-in" component={LoginPage} />
-        <Route exact path="/sign-up" component={SignUpPage} />
+        <AuthProvider>
+          <Route exact path="/sign-in" component={LoginPage} />
+          <Route exact path="/sign-up" component={SignUpPage} />
+        </AuthProvider>
+
         <Route
           exact
           path="/employee-confirm"
@@ -41,7 +45,7 @@ function App() {
         <Route exact path="/bookshift" component={BookShiftPage} />
         <Route exact path="/settings" component={SettingsPage} />
       </Switch>
-    </div>
+    </React.Fragment>
   );
 }
 

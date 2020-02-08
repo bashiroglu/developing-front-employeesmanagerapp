@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-// import { AuthContext } from '../../utils/context/authContext';
 
 function Header() {
   return (

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useInputState from '../../utils/hooks/useInputState';
-// import useAuthState from '../../utils/hooks/useAuthState';
 import Input from './../elements/formelements/input/Input';
 import Button from './../elements/formelements/button/Button';
+import { AuthContext } from '../../utils/context/authContext';
 
 function Login() {
   const [email, handleEmail] = useInputState('');
   const [password, handlePassword] = useInputState('');
+  const { setUserObject } = useContext(AuthContext);
+
   function handleLoginSubmit(e) {
     e.preventDefault();
-    console.log('hellohandleLoginSubmit');
+    setUserObject({ user: { email, password } });
   }
   return (
     <form onSubmit={handleLoginSubmit}>
