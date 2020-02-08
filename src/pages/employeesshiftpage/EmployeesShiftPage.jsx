@@ -1,20 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
-function EmployeesShiftPage({ FilterOptions, TableColumns, employees }) {
+function EmployeesShiftPage({ FilterOptions, TableColumns }) {
+  const [shift, setShift] = useState('6:00-18:00');
+  const [shiftDate, setShiftDate] = useState(new Date());
+  const [bookings, setBookings] = useState([]);
+  useEffect(() => {
+    async function getBookings() {
+      const response = await axios.get(
+        `http://localhost:3003/api/v1/bookings/`
+      );
+      setBookings(response.data.bookings);
+      // console.log(response.data.bookings);
+    }
+    getBookings();
+    // console.log(bookings);
+  }, []);
+  const filteredBookings = bookings.filter(booking => {
+    return booking.shift === shift;
+  });
+  console.log(filteredBookings);
   return (
     <div>
-      <Filter FilterOptions={FilterOptions} />
+      <Filter
+        shift={shift}
+        setShift={setShift}
+        shiftDate={shiftDate}
+        setShiftDate={setShiftDate}
+        FilterOptions={FilterOptions}
+        datepicker
+        labelContent="employees shift for this date"
+      />
       <DownloadButtons />
-      <Table TableColumns={TableColumns} employees={employees} />
+      <Table TableColumns={TableColumns} bookings={filteredBookings} />
     </div>
   );
 }
 EmployeesShiftPage.defaultProps = {
-  TableColumns: ['id', 'fullname', 'username', 'shift type', 'shift'],
+  TableColumns: ['_id', 'fullname', 'username', 'shiftType', 'shift'],
   FilterOptions: [
     '6:00-18:00',
     '18:00-6:00',

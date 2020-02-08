@@ -1,7 +1,7 @@
 import React from 'react';
-import UserList from '../userlist/UserList';
+import List from '../list/List';
 
-function Table({ TableColumns, employees, button }) {
+function Table({ TableColumns, bookings, button }) {
   return (
     <div className=" container-fluid">
       <div className="row">
@@ -16,7 +16,7 @@ function Table({ TableColumns, employees, button }) {
                 ))}
               </tr>
             </thead>
-            <UserList employees={employees} button={button} />
+            <List bookings={bookings} TableColumns={TableColumns} />
           </table>
         </div>
       </div>
