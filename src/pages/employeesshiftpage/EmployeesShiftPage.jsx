@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { saveAs } from 'file-saver';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
@@ -20,9 +21,21 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
     getBookings();
     // console.log(bookings);
   }, []);
+
   const filteredBookings = bookings.filter(booking => {
     return booking.shift === shift;
   });
+  const createAndDownloadPdf = async (req, res) => {
+    await axios.post('http://localhost:3003/api/v1/pdf', { bookings });
+    const response = await axios.get('http://localhost:3003/api/v1/pdf', {
+      responseType: 'blob'
+    });
+    const pdfBlob = await new Blob([response.data], {
+      type: 'application/pdf'
+    });
+
+    saveAs(pdfBlob, `Shiftsfor(${new Date(shiftDate).toLocaleDateString()}).pdf`);
+  };
   console.log(filteredBookings);
   return (
     <div>
@@ -37,6 +50,7 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
       />
       <DownloadButtons />
       <Table tableColumns={tableColumns} bookings={filteredBookings} />
+      <button onClick={createAndDownloadPdf}>download</button>
     </div>
   );
 }

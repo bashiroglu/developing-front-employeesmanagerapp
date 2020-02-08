@@ -16,6 +16,10 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
     getData();
   }, []);
 
+  // const createAndDownloadPdf = async () => {
+  //   await axios.post('/http://localhost:3003/api/v1/pdf', employees);
+  // };
+
   // console.log(employees);
 
   return (
@@ -25,7 +29,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
         setEquipedFilter={setEquipedFilter}
         filterOptions={filterOptions}
       />
-      <DownloadButtons />
+      <DownloadButtons  />
       <Table tableColumns={tableColumns} employees={employees} />
     </div>
   );
