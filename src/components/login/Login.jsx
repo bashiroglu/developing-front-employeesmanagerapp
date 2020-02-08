@@ -6,7 +6,7 @@ import Button from './../elements/formelements/button/Button';
 import { AuthContext } from '../../utils/context/authContext';
 
 function Login() {
-  const [email, handleEmail] = useInputState('');
+  const [emailInputValue, handleEmail] = useInputState('');
   const [password, handlePassword] = useInputState('');
   const { setUserObject } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -17,11 +17,20 @@ function Login() {
     const response = await axios.post(
       'http://localhost:3003/api/v1/users/login',
       {
-        email,
+        email: emailInputValue,
         password
       }
     );
     setLoading(false);
+    const { token, email, userId } = response.data;
+    localStorage.setItem(
+      'userObject',
+      JSON.stringify({
+        userId,
+        token,
+        email
+      })
+    );
     setUserObject(response.data);
   }
   return (
@@ -33,7 +42,7 @@ function Login() {
         id="email"
         element="input"
         name="email"
-        value={email}
+        value={emailInputValue}
         onChange={handleEmail}
       />
       <Input

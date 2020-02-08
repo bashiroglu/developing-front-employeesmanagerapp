@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // import { AuthProvider } from './utils/context/authContext';
 
@@ -14,38 +14,57 @@ import NewlyAddedEmployeesPage from './pages/newaddedemployeespage/NewlyAddedEmp
 import SettingsPage from './pages/settingspageofuser/SettingsPage';
 import ManagerListPage from './pages/managerslistpage/ManagerListPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { AuthProvider } from './utils/context/authContext';
+import { AuthContext } from './utils/context/authContext';
 
 function App() {
+  const { userObject } = useContext(AuthContext);
+  console.log(userObject);
+
+  let routes;
+  if (userObject.token) {
+    routes = (
+      <React.Fragment>
+        
+
+        <Switch>
+          <Route exact path="/employees-list" component={AllUsersPage} />
+          <Route
+            exact
+            path="/employees-shifts"
+            component={EmployeesShiftPage}
+          />
+          <Route
+            exact
+            path="/sign-up-user-by-manager"
+            component={SignUpUserByManagerPage}
+          />
+
+          <Route
+            exact
+            path="/employee-confirm"
+            component={NewlyAddedEmployeesPage}
+          />
+          <Route exact path="/managers-list-page" component={ManagerListPage} />
+          <Route exact path="/bookshift" component={BookShiftPage} />
+          <Route exact path="/settings" component={SettingsPage} />
+          <Redirect to="/sign-in" />
+        </Switch>
+      </React.Fragment>
+    );
+  } else {
+    routes = (
+      <React.Fragment>
+        {/* <Route exact path="/" component={LandingPage} /> */}
+        <Route exact path="/sign-in" component={LoginPage} />
+        <Route exact path="/sign-up" component={SignUpPage} />
+      </React.Fragment>
+    );
+  }
   return (
-    <React.Fragment>
-      <AuthProvider>
-        <Header />
-      </AuthProvider>
-      <Switch>
-        <Route exact path="/employees-list" component={AllUsersPage} />
-        <Route exact path="/employees-shifts" component={EmployeesShiftPage} />
-        <Route
-          exact
-          path="/sign-up-user-by-manager"
-          component={SignUpUserByManagerPage}
-        />
-        <AuthProvider>
-          <Route exact path="/sign-in" component={LoginPage} />
-          <Route exact path="/sign-up" component={SignUpPage} />
-        </AuthProvider>
-
-        <Route
-          exact
-          path="/employee-confirm"
-          component={NewlyAddedEmployeesPage}
-        />
-
-        <Route exact path="/managers-list-page" component={ManagerListPage} />
-        <Route exact path="/bookshift" component={BookShiftPage} />
-        <Route exact path="/settings" component={SettingsPage} />
-      </Switch>
-    </React.Fragment>
+    <main>
+      <Header />
+      {routes}
+    </main>
   );
 }
 
