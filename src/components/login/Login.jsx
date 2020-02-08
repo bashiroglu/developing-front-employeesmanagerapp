@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
 import useInputState from '../../utils/hooks/useInputState';
 import Input from './../elements/formelements/input/Input';
 import Button from './../elements/formelements/button/Button';
@@ -8,10 +9,20 @@ function Login() {
   const [email, handleEmail] = useInputState('');
   const [password, handlePassword] = useInputState('');
   const { setUserObject } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
-  function handleLoginSubmit(e) {
+  async function handleLoginSubmit(e) {
     e.preventDefault();
-    setUserObject({ user: { email, password } });
+    setLoading(true);
+    const response = await axios.post(
+      'http://localhost:3003/api/v1/users/login',
+      {
+        email,
+        password
+      }
+    );
+    setLoading(false);
+    setUserObject(response.data);
   }
   return (
     <form onSubmit={handleLoginSubmit}>
@@ -34,7 +45,9 @@ function Login() {
         value={password}
         onChange={handlePassword}
       />
-      <Button classes=" mx-3 btn-primary">Log in</Button>
+      <Button classes=" mx-3 btn-primary">
+        {loading ? 'signing' : 'Log in'}
+      </Button>
     </form>
   );
 }
