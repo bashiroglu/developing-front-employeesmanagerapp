@@ -8,10 +8,14 @@ function Header() {
   return (
     <div className=" w-100">
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-        <Link to="/employees-list" className="navbar-brand">
-          Employee Manager
-        </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
+          {admin ? (
+            <Link to="/employees-list" className="navbar-brand">
+              Employee Manager
+            </Link>
+          ) : userObject.userId ? (
+            <Link className="navbar-brand">Employee Manager</Link>
+          ) : null}
           <ul className="navbar-nav">
             {userObject.userId ? (
               <>
