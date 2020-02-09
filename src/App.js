@@ -46,18 +46,23 @@ function App() {
           <Route exact path="/settings">
             <SettingsPage />
           </Route>
-
-
-          <Redirect to="/sign-in" />
+          <Redirect to="/employees-list" />
         </Switch>
       </React.Fragment>
     );
   } else {
     routes = (
       <React.Fragment>
+        <Switch>
         {/* <Route exact path="/" component={LandingPage} /> */}
-        <Route exact path="/sign-in" component={LoginPage} />
-        <Route exact path="/sign-up" component={SignUpPage} />
+        <Route exact path="/sign-in">
+          <LoginPage />
+        </Route>
+        <Route exact path="/sign-up">
+          <SignUpPage />
+        </Route>
+        <Redirect to="/sign-in" />
+        </Switch>
       </React.Fragment>
     );
   }

@@ -22,13 +22,15 @@ function Login() {
       }
     );
     setLoading(false);
-    const { token, email, userId } = response.data;
+    const { token, email, userId, username, fullname } = response.data;
     localStorage.setItem(
       'userObject',
       JSON.stringify({
         userId,
         token,
-        email
+        email,
+        username,
+        fullname
       })
     );
     setUserObject(response.data);
