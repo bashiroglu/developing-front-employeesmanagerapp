@@ -23,7 +23,7 @@ function Login() {
       }
     );
     setLoading(false);
-    const { token, email, userId, username, fullname } = response.data;
+    const { token, email, userId, username, fullname, role } = response.data;
     localStorage.setItem(
       'userObject',
       JSON.stringify({
@@ -31,7 +31,8 @@ function Login() {
         token,
         email,
         username,
-        fullname
+        fullname,
+        role
       })
     );
     setUserObject(response.data);

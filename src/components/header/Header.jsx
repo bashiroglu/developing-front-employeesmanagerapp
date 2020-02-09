@@ -3,7 +3,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../utils/context/authContext';
 function Header() {
   const { userObject, logout } = useContext(AuthContext);
-  console.log(userObject.role);
   const admin = userObject.role === 'admin';
   return (
     <div className=" w-100">
@@ -14,7 +13,7 @@ function Header() {
               Employee Manager
             </Link>
           ) : userObject.userId ? (
-            <Link className="navbar-brand">Employee Manager</Link>
+            <div className="navbar-brand">Employee Manager</div>
           ) : null}
           <ul className="navbar-nav">
             {userObject.userId ? (
