@@ -46,7 +46,7 @@ function App() {
           <Route exact path="/settings">
             <SettingsPage />
           </Route>
-          <Redirect to="/employees-list" />
+          <Redirect to="/bookshift" />
         </Switch>
       </React.Fragment>
     );
@@ -54,14 +54,14 @@ function App() {
     routes = (
       <React.Fragment>
         <Switch>
-        {/* <Route exact path="/" component={LandingPage} /> */}
-        <Route exact path="/sign-in">
-          <LoginPage />
-        </Route>
-        <Route exact path="/sign-up">
-          <SignUpPage />
-        </Route>
-        <Redirect to="/sign-in" />
+          {/* <Route exact path="/" component={LandingPage} /> */}
+          <Route exact path="/sign-in">
+            <LoginPage />
+          </Route>
+          <Route exact path="/sign-up">
+            <SignUpPage />
+          </Route>
+          <Redirect to="/sign-in" />
         </Switch>
       </React.Fragment>
     );

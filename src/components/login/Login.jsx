@@ -4,6 +4,7 @@ import useInputState from '../../utils/hooks/useInputState';
 import Input from './../elements/formelements/input/Input';
 import Button from './../elements/formelements/button/Button';
 import { AuthContext } from '../../utils/context/authContext';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [emailInputValue, handleEmail] = useInputState('');
@@ -59,6 +60,9 @@ function Login() {
       <Button classes=" mx-3 btn-primary">
         {loading ? 'signing' : 'Log in'}
       </Button>
+      <Link className="nav-link" to="/sign-up">
+        I do not have account
+      </Link>
     </form>
   );
 }

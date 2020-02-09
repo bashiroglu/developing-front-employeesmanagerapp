@@ -1,36 +1,49 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import Input from './../elements/formelements/input/Input';
 import Button from './../elements/formelements/button/Button';
 import useInputState from '../../utils/hooks/useInputState';
-import useAuthState from '../../utils/hooks/useAuthState';
+import { AuthContext } from '../../utils/context/authContext';
 
 function SignUp() {
-  const [user, setUser] = useAuthState('');
-  const [email, handleEmail] = useInputState('');
+  const { setUserObject } = useContext(AuthContext);
+  const [emailInputValue, handleEmail] = useInputState('');
   const [password, handlePassword] = useInputState('');
   const [groupname, handleGroupname] = useInputState('');
+  const [fullnameInputValue, setFullname] = useInputState('');
+  const [usernameInputValue, setUsername] = useInputState('');
   const [passwordConfirm, handlePasswordConfirm] = useInputState('');
+  const [loading, setLoading] = useState(false);
   async function handleSignUpSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     const response = await axios.post(
       'http://localhost:3003/api/v1/users/signup',
       {
-        name: groupname,
-        email: email,
-        password: password
+        groupname: groupname,
+        email: emailInputValue,
+        password,
+        fullname: fullnameInputValue,
+        username: usernameInputValue
       }
     );
-    setUser({
-      token: response.data.token,
-      email: response.data.email,
-      userid: response.data.userId
-    });
-    console.log(user);
+    setLoading(false);
+    const { token, email, userId, username, fullname } = response.data;
+    localStorage.setItem(
+      'userObject',
+      JSON.stringify({
+        userId,
+        token,
+        email,
+        username,
+        fullname
+      })
+    );
+    setUserObject(response.data);
 
-    console.log(response.data.token, response.data.userId, response.data.email);
+    // console.log(response.data.token, response.data.userId, response.data.email);
   }
   return (
     <form onSubmit={handleSignUpSubmit}>
@@ -41,10 +54,32 @@ function SignUp() {
         id="email"
         element="input"
         additionaltextid="notifythatyouwillneed"
-        additionaltext="Plese provide valid email, you will need to access your account"
+        additionaltext="Please provide valid email, you will need to access your account"
         name="email"
-        value={email}
+        value={emailInputValue}
         onChange={handleEmail}
+      />
+      <Input
+        label="Fullname"
+        type="text"
+        id="text"
+        element="input"
+        additionaltextid="notifythatyouwillneed"
+        additionaltext="Please provide valid fullname, you will need to access your account"
+        name="fullname"
+        value={fullnameInputValue}
+        onChange={setFullname}
+      />
+      <Input
+        label="Username"
+        type="text"
+        id="text"
+        element="input"
+        additionaltextid="notifythatyouwillneed"
+        additionaltext="Please provide valid Username, you will need to access your account"
+        name="username"
+        value={usernameInputValue}
+        onChange={setUsername}
       />
       <Input
         label="Password"
@@ -77,6 +112,9 @@ function SignUp() {
       />
       <div className="row">
         <Button classes=" mx-3 btn-success">Sign up</Button>
+        <Button classes=" mx-3 btn-primary">
+          {loading ? 'your account has been creating' : 'Sign up'}
+        </Button>
         <Link className="nav-link" to="/sign-in">
           I do have account
         </Link>
