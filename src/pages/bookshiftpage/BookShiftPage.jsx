@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -6,13 +6,16 @@ import Input from '../../components/elements/formelements/input/Input';
 import SelectInput from '../../components/elements/formelements/input/SelectInput';
 import Button from '../../components/elements/formelements/button/Button';
 import ShiftItem from '../../components/bookedshiftitem/ShiftItem';
+import { AuthContext } from '../../utils/context/authContext';
 
 function BookShiftPage({ filterOptionsShift }) {
+  const { userObject } = useContext(AuthContext);
   const [needRefresh, setNeedRefresh] = useState(false);
   const [bookings, setBookings] = useState(false);
   const [loading, setLoading] = useState(false);
   const [shiftDate, setShiftDate] = useState(new Date());
-  const [username, setUsername] = useState('Bashiroglu');
+  const [username, setUsername] = useState(userObject.username);
+  const [fullname] = useState(userObject.fullname);
   const [shift, setShift] = useState('6:00-18:00');
   useEffect(() => {
     async function getBookings() {
@@ -20,7 +23,6 @@ function BookShiftPage({ filterOptionsShift }) {
         `http://localhost:3003/api/v1/bookings/${username}`
       );
       setBookings(response.data.bookings);
-      console.log(response.data.bookings);
     }
     getBookings();
   }, [needRefresh, username]);
@@ -39,7 +41,7 @@ function BookShiftPage({ filterOptionsShift }) {
     try {
       await axios.post('http://localhost:3003/api/v1/bookings', {
         date: shiftDate,
-        fullname: 'Abdulla Bashir',
+        fullname,
         username,
         shift,
         shiftType: getShiftType(shift)

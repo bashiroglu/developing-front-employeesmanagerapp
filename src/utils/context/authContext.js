@@ -4,9 +4,9 @@ import useAuthState from '../hooks/useAuthState';
 export const AuthContext = createContext();
 
 export function AuthProvider(props) {
-  const [userObject, setUserObject] = useAuthState({});
+  const [userObject, setUserObject, logout] = useAuthState({});
   return (
-    <AuthContext.Provider value={{ userObject, setUserObject }}>
+    <AuthContext.Provider value={{ userObject, setUserObject, logout }}>
       {props.children}
     </AuthContext.Provider>
   );
