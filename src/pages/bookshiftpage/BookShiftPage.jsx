@@ -70,7 +70,7 @@ function BookShiftPage({ filterOptionsShift }) {
             onChangeRaw={e => e.preventDefault()}
           />
           <p>
-            The day you chose for shift:{' '}
+            The day you chose for shift:
             <span className="text-primary">
               {shiftDate.toLocaleString('en-us', { weekday: 'long' })}
             </span>
@@ -81,7 +81,7 @@ function BookShiftPage({ filterOptionsShift }) {
             name="username"
             onChange={e => setUsername(e.target.value)}
             value={username}
-            disabled={true}
+            disabled={!(userObject.role === 'admin')}
           />
 
           <SelectInput
