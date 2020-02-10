@@ -47,7 +47,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
 // }
 
 AllEmployeesPage.defaultProps = {
-  tableColumns: ['_id', 'fullname', 'username', 'groupname', 'equipmentStatus'],
+  tableColumns: ['_id', 'fullname', 'username', 'groupname', 'equipments'],
   filterOptions: [
     'fully equiped',
     't-shirt equiped',
