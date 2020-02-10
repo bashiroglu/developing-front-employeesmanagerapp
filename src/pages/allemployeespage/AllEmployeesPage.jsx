@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
 
 import Filter from '../../components/filter/Filter';
@@ -12,6 +13,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
     async function getData() {
       const response = await axios.get('http://localhost:3003/api/v1/users');
       setEmployees(response.data.users);
+      console.log(response.data.users[10].equipments);
     }
     getData();
   }, []);
@@ -29,7 +31,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
         setEquipedFilter={setEquipedFilter}
         filterOptions={filterOptions}
       />
-      <DownloadButtons  />
+      <DownloadButtons />
       <Table tableColumns={tableColumns} employees={employees} />
     </div>
   );
@@ -45,14 +47,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
 // }
 
 AllEmployeesPage.defaultProps = {
-  tableColumns: [
-    'id',
-    'name',
-    'surname',
-    'username',
-    'groupname',
-    'equipments'
-  ],
+  tableColumns: ['_id', 'fullname', 'username', 'groupname', 'equipmentStatus'],
   filterOptions: [
     'fully equiped',
     't-shirt equiped',
