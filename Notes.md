@@ -13,10 +13,18 @@ Manager getting report about sallary
 
 Download PDF button(and excell button) to pages, Problem is how to put(It is planned to put in form page after filter before table)
 
-Employee book shift page
+#### Employee book shift page
 
 - date picker
-    add funct of displaying the day of week after select(done)
+  add funct of displaying the day of week after select(done)
 
+#### SignUpUserByManagerPage
 
-employee photo comp. in header
+- Order
+  I want to add order but I coudn't in table side to show user how many user admin added
+
+  employee photo comp. in header
+
+## Anypage autocomplete feature
+
+When admin want to add search or do something with users, he or she will be able to use autocomplete feature of our application.
