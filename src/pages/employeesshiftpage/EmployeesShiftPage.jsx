@@ -7,6 +7,7 @@ import Table from '../../components/table/Table';
 import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
 function EmployeesShiftPage({ filterOptions, tableColumns }) {
+  const [loading, setLoading] = useState(false);
   const [shift, setShift] = useState('6:00-18:00');
   const [shiftDate, setShiftDate] = useState(new Date());
   const [bookings, setBookings] = useState([]);
@@ -28,6 +29,7 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
   });
   const createAndDownloadPdf = async (req, res) => {
     if (downloadType === 'Export as a pdf file') {
+      setLoading(true);
       await axios.post('http://localhost:3003/api/v1/pdf', { bookings });
       const response = await axios.get('http://localhost:3003/api/v1/pdf', {
         responseType: 'blob'
@@ -40,6 +42,7 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
         pdfBlob,
         `Shiftsfor(${new Date(shiftDate).toLocaleDateString()}).pdf`
       );
+      setLoading(false);
     } else {
       console.log('not implemented yet');
     }
@@ -63,6 +66,7 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
         downloadType={downloadType}
         onChange={e => setDownloadType(e.target.value)}
         onSubmit={handleSubmit}
+        loading={loading}
       />
       <Table tableColumns={tableColumns} bookings={filteredBookings} />
     </div>
