@@ -27,7 +27,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
     if (downloadType === 'Export as a pdf file') {
       setLoading(true);
       await axios.post('http://localhost:3003/api/v1/pdf', {
-        bookings: employees
+        items: employees
       });
       const response = await axios.get('http://localhost:3003/api/v1/pdf', {
         responseType: 'blob'
