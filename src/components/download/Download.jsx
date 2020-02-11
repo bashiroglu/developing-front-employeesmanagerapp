@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../../components/elements/formelements/button/Button';
 import SelectInput from '../elements/formelements/input/SelectInput';
 
-function DownloadButtons({ onChange, onSubmit, downloadType, loading }) {
+function Download({ onChange, onSubmit, downloadType, loading }) {
   return (
     <form onSubmit={onSubmit} className="form-inline container mb-4">
       <SelectInput
@@ -21,4 +21,4 @@ function DownloadButtons({ onChange, onSubmit, downloadType, loading }) {
   );
 }
 
-export default DownloadButtons;
+export default Download;

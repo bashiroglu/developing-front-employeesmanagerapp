@@ -2,13 +2,13 @@ import React from 'react';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
-import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
+import Download from '../../components/download/Download';
 
 function NewlyAddedEmployeesPage({ filterOptions, tableColumns, employees }) {
   return (
     <div>
       <Filter filterOptions={filterOptions} />
-      <DownloadButtons />
+      <Download />
       <Table
         tableColumns={tableColumns}
         employees={employees}

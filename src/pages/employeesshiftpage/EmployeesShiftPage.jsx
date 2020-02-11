@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
-import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
+import Download from '../../components/download/Download';
 
 function EmployeesShiftPage({ filterOptions, tableColumns }) {
   const [loading, setLoading] = useState(false);
@@ -62,7 +62,7 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
         datepicker
         labelContent="employees shift for this date"
       />
-      <DownloadButtons
+      <Download
         downloadType={downloadType}
         onChange={e => setDownloadType(e.target.value)}
         onSubmit={handleSubmit}

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
-import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
+import Download from '../../components/download/Download';
 
 function AllEmployeesPage({ filterOptions, tableColumns }) {
   const [employees, setEmployees] = useState([]);
@@ -36,7 +36,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
         type: 'application/pdf'
       });
 
-      saveAs(pdfBlob, `Userslistat(${new Date().toLocaleDateString()}).pdf`);
+      saveAs(pdfBlob, `Usersliston(${new Date().toLocaleDateString()}).pdf`);
       setLoading(false);
     } else {
       console.log('not implemented yet');
@@ -55,7 +55,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
         setEquipedFilter={setEquipedFilter}
         filterOptions={filterOptions}
       />
-      <DownloadButtons
+      <Download
         downloadType={downloadType}
         onChange={e => setDownloadType(e.target.value)}
         onSubmit={handleSubmit}
