@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { saveAs } from 'file-saver';
 import axios from 'axios';
 
 import Filter from '../../components/filter/Filter';
@@ -8,6 +8,8 @@ import DownloadButtons from '../../components/downloadbuttons/DownloadButtons';
 
 function AllEmployeesPage({ filterOptions, tableColumns }) {
   const [employees, setEmployees] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [downloadType, setDownloadType] = useState('Export as a pdf file');
   const [equipedFilter, setEquipedFilter] = useState('');
   useEffect(() => {
     async function getData() {
@@ -17,7 +19,29 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
     }
     getData();
   }, []);
+  const handleSubmit = e => {
+    e.preventDefault();
+    createAndDownloadPdf();
+  };
+  const createAndDownloadPdf = async (req, res) => {
+    if (downloadType === 'Export as a pdf file') {
+      setLoading(true);
+      await axios.post('http://localhost:3003/api/v1/pdf', {
+        bookings: employees
+      });
+      const response = await axios.get('http://localhost:3003/api/v1/pdf', {
+        responseType: 'blob'
+      });
+      const pdfBlob = await new Blob([response.data], {
+        type: 'application/pdf'
+      });
 
+      saveAs(pdfBlob, `Userslistat(${new Date().toLocaleDateString()}).pdf`);
+      setLoading(false);
+    } else {
+      console.log('not implemented yet');
+    }
+  };
   // const createAndDownloadPdf = async () => {
   //   await axios.post('/http://localhost:3003/api/v1/pdf', employees);
   // };
@@ -31,7 +55,12 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
         setEquipedFilter={setEquipedFilter}
         filterOptions={filterOptions}
       />
-      <DownloadButtons />
+      <DownloadButtons
+        downloadType={downloadType}
+        onChange={e => setDownloadType(e.target.value)}
+        onSubmit={handleSubmit}
+        loading={loading}
+      />
       <Table tableColumns={tableColumns} employees={employees} />
     </div>
   );
