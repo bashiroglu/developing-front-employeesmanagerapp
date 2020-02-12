@@ -3,12 +3,18 @@ import uuid from 'uuid';
 
 import ListItem from '../listItem/ListItem';
 
-function List({ items, tableColumns }) {
+function List({ items, tableColumns, checkbox, onChange }) {
   return (
     <tbody>
       {items.map(item => {
         return (
-          <ListItem key={uuid()} tableColumns={tableColumns} item={item} />
+          <ListItem
+            key={uuid()}
+            checkbox={checkbox}
+            tableColumns={tableColumns}
+            item={item}
+            onChange={onChange}
+          />
         );
       })}
     </tbody>

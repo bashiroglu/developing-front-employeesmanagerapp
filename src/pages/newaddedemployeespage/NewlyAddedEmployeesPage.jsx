@@ -1,25 +1,30 @@
 import React from 'react';
 
-import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 import Download from '../../components/download/Download';
 
 function NewlyAddedEmployeesPage({ filterOptions, tableColumns, employees }) {
+  const handleCheckBoxChange = (item, e) => {
+    console.log(item);
+    console.log(e);
+  };
   return (
     <div>
-      <Filter filterOptions={filterOptions} />
       <Download />
       <Table
         tableColumns={tableColumns}
         employees={employees}
         button="confirm"
+        checkbox={true}
+        onChange={handleCheckBoxChange}
       />
     </div>
   );
 }
 NewlyAddedEmployeesPage.defaultProps = {
   tableColumns: [
-    'id',
+    'checkbox',
+    '_id',
     'name',
     'surname',
     'username',

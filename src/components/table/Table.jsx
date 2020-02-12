@@ -1,7 +1,14 @@
 import React from 'react';
 import List from '../list/List';
 
-function Table({ tableColumns, bookings, employees, button }) {
+function Table({
+  tableColumns,
+  bookings,
+  employees,
+  button,
+  checkbox,
+  onChange
+}) {
   return (
     <div className=" container-fluid">
       <div className="row">
@@ -17,8 +24,10 @@ function Table({ tableColumns, bookings, employees, button }) {
               </tr>
             </thead>
             <List
+              checkbox={checkbox}
               items={bookings ? bookings : employees}
               tableColumns={tableColumns}
+              onChange={onChange}
             />
           </table>
         </div>
