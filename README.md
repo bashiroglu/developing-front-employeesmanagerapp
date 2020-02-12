@@ -10,6 +10,8 @@ Business Logic: As a part time, I work in a plant and because all workers are te
 
 - I did have some photos of pages but not components, next time I would prepare pages but also components in addition.
 
+- I used employees and users but they both are the same, I wouldn't do this next time or I would distinguish them, in other words I wouldn't use these two words interchangeably.
+
 ###### Weaknesses of project:
 
 1. In front side I only check if user logged in and protect the normal user seeing the admin routes only simple if check which allow user seeing navlinks which take them to protected routes. But I plan to add protecting to back-end, as a result user can not make request anyway.
