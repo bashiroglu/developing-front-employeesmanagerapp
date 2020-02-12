@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Table from '../../components/table/Table';
-import Download from '../../components/download/Download';
+import Button from '../../components/elements/formelements/button/Button';
 
 function NewlyAddedEmployeesPage({ filterOptions, tableColumns, employees }) {
   const handleCheckBoxChange = (item, e) => {
@@ -10,7 +10,11 @@ function NewlyAddedEmployeesPage({ filterOptions, tableColumns, employees }) {
   };
   return (
     <div>
-      <Download />
+      <div className="row d-flex my-3 mx-3">
+        <Button type="submit" classes="ml-auto  btn-success">
+          Confirm selected users
+        </Button>
+      </div>
       <Table
         tableColumns={tableColumns}
         employees={employees}
@@ -22,20 +26,11 @@ function NewlyAddedEmployeesPage({ filterOptions, tableColumns, employees }) {
   );
 }
 NewlyAddedEmployeesPage.defaultProps = {
-  tableColumns: [
-    'checkbox',
-    '_id',
-    'name',
-    'surname',
-    'username',
-    'groupname',
-    'equipmentStatus',
-    'confirm'
-  ],
+  tableColumns: ['checkbox', '_id', 'name', 'surname', 'groupname'],
   filterOptions: ['fully equiped', 't-shirt equiped', 'shoes equiped'],
   employees: [
     {
-      id: '1',
+      _id: '1',
       name: 'Hasan',
       surname: 'Muradli',
       username: 'muradlihasan',
@@ -43,7 +38,7 @@ NewlyAddedEmployeesPage.defaultProps = {
       equipmentStatus: 'equipmentStatus'
     },
     {
-      id: '2',
+      _id: '2',
       name: 'John',
       surname: 'Bottom',
       username: 'johnbottom',
