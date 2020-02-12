@@ -18,7 +18,7 @@ function Table({
               <tr>
                 {tableColumns.map(col => (
                   <th key={col} scope="col">
-                    {col}
+                    {col === 'checkbox' ? <input type="checkbox" /> : col}
                   </th>
                 ))}
               </tr>
