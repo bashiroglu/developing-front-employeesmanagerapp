@@ -16,4 +16,4 @@ Business Logic: As a part time, I work in a plant and because all workers are te
 
 1. In front side I only check if user logged in and protect the normal user seeing the admin routes only simple if check which allow user seeing navlinks which take them to protected routes. But I plan to add protecting to back-end, as a result user can not make request anyway.
 
-2.
+2. When I create token, I don't take care of expire-date. This is not good at all. But for simplicity sake, I did like that in particulat project.
