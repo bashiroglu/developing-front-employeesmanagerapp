@@ -6,6 +6,7 @@ import Button from '../../components/elements/formelements/button/Button';
 
 function NewlyAddedEmployeesPage({ filterOptions, tableColumns }) {
   const [employees, setEmployees] = useState([]);
+  const [checkedList, setCheckedList] = useState([]);
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
@@ -15,9 +16,13 @@ function NewlyAddedEmployeesPage({ filterOptions, tableColumns }) {
     }
     getData();
   }, []);
-  const handleCheckBoxChange = (item, e) => {
-    console.log(item);
-    console.log(e);
+  const handleCheckBoxChange = itemId => {
+    if (!checkedList.includes(itemId)) {
+      setCheckedList([...checkedList, itemId]);
+    } else {
+      setCheckedList(checkedList.filter(id => id !== itemId));
+    }
+    console.log(itemId);
   };
   return (
     <div>
@@ -32,6 +37,7 @@ function NewlyAddedEmployeesPage({ filterOptions, tableColumns }) {
         button="confirm"
         checkbox={true}
         onChange={handleCheckBoxChange}
+        checkedList={checkedList}
       />
     </div>
   );

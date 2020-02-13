@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid';
 import EquipmentDisplayer from '../equipmentDisplayer/EquipmentDisplayer';
-function ListItem({ item, tableColumns, checkbox, onChange }) {
+function ListItem({ item, tableColumns, checkbox, onChange, checkedList }) {
   const normalFlow = i => <td key={uuid()}>{item[tableColumns[i]]}</td>;
 
   return (
@@ -10,7 +10,11 @@ function ListItem({ item, tableColumns, checkbox, onChange }) {
         if (checkbox && tableColumns[i] === 'checkbox') {
           return (
             <td key={uuid()}>
-              <input type="checkbox" onChange={e => onChange(item, e)} />
+              <input
+                type="checkbox"
+                checked={checkedList.includes(item._id)}
+                onChange={e => onChange(item._id, e)}
+              />
             </td>
           );
         }

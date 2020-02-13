@@ -5,9 +5,9 @@ function Table({
   tableColumns,
   bookings,
   employees,
-  button,
   checkbox,
-  onChange
+  onChange,
+  checkedList
 }) {
   return (
     <div className=" container-fluid">
@@ -28,6 +28,7 @@ function Table({
               items={bookings ? bookings : employees}
               tableColumns={tableColumns}
               onChange={onChange}
+              checkedList={checkedList}
             />
           </table>
         </div>
