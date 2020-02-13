@@ -74,7 +74,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               placeholder="Add user's groupname"
             />
             <Button classes=" mx-3 btn-primary">
-              Check and give list of users
+              Add user to the list
             </Button>
           </form>
           <div className="col-md-8">
