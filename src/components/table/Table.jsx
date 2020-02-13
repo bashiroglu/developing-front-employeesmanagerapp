@@ -7,7 +7,9 @@ function Table({
   employees,
   checkbox,
   onChange,
-  checkedList
+  checkedList,
+  handleAllUsers,
+  stateOfAllCheckboxs
 }) {
   return (
     <div className=" container-fluid">
@@ -18,7 +20,15 @@ function Table({
               <tr>
                 {tableColumns.map(col => (
                   <th key={col} scope="col">
-                    {col === 'checkbox' ? <input type="checkbox" /> : col}
+                    {col === 'checkbox' ? (
+                      <input
+                        onChange={handleAllUsers}
+                        type="checkbox"
+                        checked={stateOfAllCheckboxs}
+                      />
+                    ) : (
+                      col
+                    )}
                   </th>
                 ))}
               </tr>

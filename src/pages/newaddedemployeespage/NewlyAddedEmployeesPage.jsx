@@ -4,8 +4,9 @@ import axios from 'axios';
 import Table from '../../components/table/Table';
 import Button from '../../components/elements/formelements/button/Button';
 
-function NewlyAddedEmployeesPage({ filterOptions, tableColumns }) {
+function NewlyAddedEmployeesPage({ tableColumns }) {
   const [employees, setEmployees] = useState([]);
+  const [allCheckboxs, setAllCheckboxs] = useState(false);
   const [checkedList, setCheckedList] = useState([]);
   useEffect(() => {
     async function getData() {
@@ -24,6 +25,16 @@ function NewlyAddedEmployeesPage({ filterOptions, tableColumns }) {
     }
     console.log(itemId);
   };
+  const handleAllUsers = () => {
+    const employeeIds = employees.map(employee => employee._id);
+    if (allCheckboxs) {
+      setCheckedList([]);
+      setAllCheckboxs(false);
+    } else {
+      setCheckedList(employeeIds);
+      setAllCheckboxs(true);
+    }
+  };
   return (
     <div>
       <div className="row d-flex my-3 mx-3">
@@ -38,6 +49,8 @@ function NewlyAddedEmployeesPage({ filterOptions, tableColumns }) {
         checkbox={true}
         onChange={handleCheckBoxChange}
         checkedList={checkedList}
+        handleAllUsers={handleAllUsers}
+        stateOfAllCheckboxs={allCheckboxs}
       />
     </div>
   );
