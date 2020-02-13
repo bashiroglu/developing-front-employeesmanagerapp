@@ -15,7 +15,6 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
     async function getData() {
       const response = await axios.get('http://localhost:3003/api/v1/users');
       setEmployees(response.data.users);
-      console.log(response.data.users[10].equipments);
     }
     getData();
   }, []);

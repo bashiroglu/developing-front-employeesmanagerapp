@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '../../components/elements/formelements/input/Input';
 import Button from '../../components/elements/formelements/button/Button';
+import UpdatePassword from '../../components/updatepassword/UpdatePassword';
 
 function SettingsPage() {
   return (
@@ -49,33 +50,7 @@ function SettingsPage() {
           <Button classes="mx-3 btn-success">Update</Button>
           {/* <Button classes=" mx-3 btn-success">Sign Up all users</Button> */}
         </form>
-        <form className="col-md-6 mt-4">
-          <h2>You can update your password</h2>
-          <Input
-            label="Password"
-            type="password"
-            name="password"
-            id="password"
-            element="input"
-          />
-          <Input
-            label="New Password"
-            type="password"
-            id="newpassword"
-            name="newpassword"
-            element="input"
-          />
-          <Input
-            label="New Password Confirm"
-            type="password"
-            id="newPasswordConfirm"
-            name="newPasswordConfirm"
-            element="input"
-          />
-
-          <Button classes=" mx-3 btn-success">Update Password</Button>
-          {/* <Button classes=" mx-3 btn-success">Sign Up all users</Button> */}
-        </form>
+        <UpdatePassword />
       </div>
     </div>
   );
