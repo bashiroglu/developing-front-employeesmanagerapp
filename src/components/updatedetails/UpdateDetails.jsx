@@ -10,6 +10,8 @@ function UpdateDetails() {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [groupname, setGroupname] = useState('');
+  const [shoesize, setShoesize] = useState('');
+  const [bodysize, setBodysize] = useState('');
   console.log(userObject.email);
 
   useEffect(() => {
@@ -77,15 +79,19 @@ function UpdateDetails() {
         id="shoeSize"
         name="shoeSize"
         element="input"
+        value={shoesize}
+        onChange={e => setShoesize(e.target.value)}
         additionaltextid="shoetext"
         additionaltext="We need this information to provide you with shoes"
       />
       <Input
         label="Provide your body size"
         type="body"
-        name="bodySize"
+        name="bodysize"
         id="body"
         element="input"
+        value={bodysize}
+        onChange={e => setBodysize(e.target.value)}
         additionaltextid="bodytext"
         additionaltext="We need this information to provide you with T-shirt"
       />
