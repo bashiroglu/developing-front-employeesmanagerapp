@@ -9,6 +9,7 @@ function UpdateDetails() {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const [groupname, setGroupname] = useState('');
   console.log(userObject.email);
 
   useEffect(() => {
@@ -17,11 +18,12 @@ function UpdateDetails() {
         `http://localhost:3003/api/v1/users/details/${userObject.email}`
       );
 
-      const { email, fullname, username } = response.data.user;
+      const { email, fullname, username, groupname } = response.data.user;
 
       setFullname(fullname);
       setEmail(email);
       setUsername(username);
+      setGroupname(groupname);
     }
     getData();
   }, [userObject]);
@@ -58,33 +60,35 @@ function UpdateDetails() {
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
-      {/* <Input
-            label="Provide your group name"
-            type="email"
-            id="groupname"
-            name="groupname"
-            element="input"
-            additionaltextid="groupnamefromagency"
-            additionaltext="You can get your groupname from your agency"
-          />
-          <Input
-            label="Provide your shoe size"
-            type="text"
-            id="shoeSize"
-            name="shoeSize"
-            element="input"
-            additionaltextid="shoetext"
-            additionaltext="We need this information to provide you with shoes"
-          />
-          <Input
-            label="Provide your body size"
-            type="body"
-            name="bodySize"
-            id="body"
-            element="input"
-            additionaltextid="bodytext"
-            additionaltext="We need this information to provide you with T-shirt"
-          /> */}
+      <Input
+        label="Provide your group name"
+        value={groupname}
+        disabled={true}
+        type="email"
+        id="groupname"
+        name="groupname"
+        element="input"
+        additionaltextid="groupnamefromagency"
+        additionaltext="You can not update your groupname"
+      />
+      <Input
+        label="Provide your shoe size"
+        type="text"
+        id="shoeSize"
+        name="shoeSize"
+        element="input"
+        additionaltextid="shoetext"
+        additionaltext="We need this information to provide you with shoes"
+      />
+      <Input
+        label="Provide your body size"
+        type="body"
+        name="bodySize"
+        id="body"
+        element="input"
+        additionaltextid="bodytext"
+        additionaltext="We need this information to provide you with T-shirt"
+      />
       <Button classes="mx-3 btn-success">Update</Button>
     </form>
   );
