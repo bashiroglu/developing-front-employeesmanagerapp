@@ -29,10 +29,8 @@ function UpdateDetails() {
     }
     getData();
   }, [userObject]);
-  return (
-    <form className="col-md-6 mt-4">
-      <h2>Fill in your details</h2>
-      <p>This data will be used to provide you neccessary items to work</p>
+  const CommonUserComps = (
+    <>
       <Input
         label="Email"
         type="email"
@@ -62,6 +60,10 @@ function UpdateDetails() {
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
+    </>
+  );
+  const oridinaryUserComps = (
+    <>
       <Input
         label="Provide your group name"
         value={groupname}
@@ -95,6 +97,14 @@ function UpdateDetails() {
         additionaltextid="bodytext"
         additionaltext="We need this information to provide you with T-shirt"
       />
+    </>
+  );
+  return (
+    <form className="col-md-6 mt-4">
+      <h2>Fill in your details</h2>
+      <p>This data will be used to provide you neccessary items to work</p>
+      {CommonUserComps}
+      {!(userObject.role === 'admin') ? oridinaryUserComps : null}
       <Button classes="mx-3 btn-success">Update</Button>
     </form>
   );
