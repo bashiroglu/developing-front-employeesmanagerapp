@@ -7,6 +7,7 @@ import Table from '../../components/table/Table';
 import Download from '../../components/download/Download';
 
 function AllEmployeesPage({ filterOptions, tableColumns }) {
+  // const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [downloadType, setDownloadType] = useState('Export as a pdf file');
@@ -14,7 +15,9 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
   useEffect(() => {
     async function getData() {
       const response = await axios.get('http://localhost:3003/api/v1/users');
+
       setEmployees(response.data.users);
+      console.log(response.data.users);
     }
     getData();
   }, []);
@@ -22,6 +25,69 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
     e.preventDefault();
     createAndDownloadPdf();
   };
+  // const handleFilterInputChange = value => {
+  //   setEquipedFilter(value);
+
+  //   console.log(filteredEmployees);
+  // };
+  let filteredEmployees = employees;
+  if (equipedFilter === 'all employees') {
+    filteredEmployees = employees;
+  } else if (equipedFilter === 'fully equiped') {
+    filteredEmployees = employees.filter(employee => {
+      return (
+        employee.equipments.includes('shoe') &&
+        employee.equipments.includes('t-shirt')
+      );
+    });
+  } else if (equipedFilter === 'shoes equiped') {
+    filteredEmployees = employees.filter(employee => {
+      return employee.equipments.includes('shoe');
+    });
+  } else if (equipedFilter === 't-shirt equiped') {
+    filteredEmployees = employees.filter(employee => {
+      return employee.equipments.includes('t-shirt');
+    });
+  } else if (equipedFilter === 'no equipment') {
+    filteredEmployees = employees.filter(employee => {
+      return (
+        !employee.equipments.includes('shoe') &&
+        !employee.equipments.includes('t-shirt')
+      );
+    });
+  }
+  // const filterEmployees = employees.filter(employee =>
+  //   employee.equipments.includes('shoe')
+  // );
+  // const filterEmployees = employees.filter(
+  //   employee =>
+  //     employee.equipments.includes('shoe') &&
+  //     employee.equipments.includes('t-shirt')
+  // );
+  // const filterEmployees = employees.filter(employee =>
+  //   employee.equipments.includes('t-shirt')
+  // );
+  // const filterEmployees = () => {
+  //   // const filteredEmployees
+  //   let filteredEmployees2;
+  //   if (equipedFilter === 'all employees') {
+  //     filteredEmployees2 = employees;
+  //   } else if (equipedFilter === 'fully equiped') {
+  //     filteredEmployees2 = employees.filter(
+  //       employee =>
+  //         employee.equipments.includes('shoe') &&
+  //         employee.equipments.includes('t-shirt')
+  //     );
+  //   }
+  // setFilteredEmployees(filteredEmployees2);
+  // console.log(filteredEmployees2);
+
+  // const filter =
+  // const equipedFilter = employees.filter(employee =>
+  //   employee.equipments.includes('shoe')
+  // );
+  // };
+
   const createAndDownloadPdf = async (req, res) => {
     if (downloadType === 'Export as a pdf file') {
       setLoading(true);
@@ -60,7 +126,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
         onSubmit={handleSubmit}
         loading={loading}
       />
-      <Table tableColumns={tableColumns} employees={employees} />
+      <Table tableColumns={tableColumns} employees={filteredEmployees} />
     </div>
   );
 }
@@ -77,6 +143,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
 AllEmployeesPage.defaultProps = {
   tableColumns: ['_id', 'fullname', 'username', 'groupname', 'equipments'],
   filterOptions: [
+    'all employees',
     'fully equiped',
     't-shirt equiped',
     'shoes equiped',
