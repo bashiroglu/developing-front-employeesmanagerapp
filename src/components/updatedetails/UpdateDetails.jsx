@@ -6,13 +6,14 @@ import { AuthContext } from '../../utils/context/authContext';
 
 function UpdateDetails() {
   const { userObject } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [groupname, setGroupname] = useState('');
   const [shoesize, setShoesize] = useState('');
   const [bodysize, setBodysize] = useState('');
-  console.log(userObject.email);
+  // console.log(userObject.email);
 
   useEffect(() => {
     async function getData() {
@@ -26,9 +27,34 @@ function UpdateDetails() {
       setEmail(email);
       setUsername(username);
       setGroupname(groupname);
+      setShoesize(response.data.user.shoeSize);
+      setBodysize(response.data.user.bodySize);
     }
     getData();
   }, [userObject]);
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setLoading(true);
+    const response = await axios.patch(
+      'http://localhost:3003/api/v1/users/update-details',
+      {
+        email: userObject.email,
+        fullname,
+        username,
+        shoesize,
+        bodysize,
+        groupname,
+        emailForUpdate: email
+      }
+    );
+    setFullname(response.data.user.fullname);
+    setEmail(response.data.user.email);
+    setUsername(response.data.user.username);
+    setGroupname(response.data.user.groupname);
+    setShoesize(response.data.user.shoeSize);
+    setBodysize(response.data.user.bodySize);
+    setLoading(false);
+  };
   const CommonUserComps = (
     <>
       <Input
@@ -93,19 +119,21 @@ function UpdateDetails() {
         id="body"
         element="input"
         value={bodysize}
-        onChange={e => setBodysize(e.target.value)}
+        onChange={e => setBodysize(e.target.value.toUpperCase())}
         additionaltextid="bodytext"
         additionaltext="We need this information to provide you with T-shirt"
       />
     </>
   );
   return (
-    <form className="col-md-6 mt-4">
+    <form className="col-md-6 mt-4" onSubmit={handleSubmit}>
       <h2>Fill in your details</h2>
       <p>This data will be used to provide you neccessary items to work</p>
       {CommonUserComps}
       {!(userObject.role === 'admin') ? oridinaryUserComps : null}
-      <Button classes="mx-3 btn-success">Update</Button>
+      <Button classes="mx-3 btn-success">
+        {loading ? 'Updating' : 'Update'}
+      </Button>
     </form>
   );
 }
