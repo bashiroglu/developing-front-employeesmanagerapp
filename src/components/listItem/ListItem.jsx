@@ -18,7 +18,7 @@ function ListItem({ item, tableColumns, checkbox, onChange, checkedList }) {
             </td>
           );
         }
-        if (tableColumns[i] === 'equipments') {
+        if (tableColumns[i] === 'equipment') {
           return (
             <td key={uuid()}>
               <EquipmentDisplayer

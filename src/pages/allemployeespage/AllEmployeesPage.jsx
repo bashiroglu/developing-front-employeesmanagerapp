@@ -92,7 +92,7 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
 }
 
 AllEmployeesPage.defaultProps = {
-  tableColumns: ['_id', 'fullname', 'username', 'groupname', 'equipments'],
+  tableColumns: ['_id', 'fullname', 'username', 'groupname', 'equipment'],
   filterOptions: [
     'all employees',
     'fully equiped',
