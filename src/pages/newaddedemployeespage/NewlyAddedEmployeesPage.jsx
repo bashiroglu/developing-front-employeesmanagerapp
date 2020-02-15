@@ -25,6 +25,7 @@ function NewlyAddedEmployeesPage({ tableColumns }) {
       });
       setUseEffectState(!useEffectState);
       setCheckedList([]);
+      setAllCheckboxs(false)
     } catch (error) {
       console.log(error);
     }
