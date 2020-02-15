@@ -32,23 +32,23 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
   } else if (equipedFilter === 'fully equiped') {
     filteredEmployees = employees.filter(employee => {
       return (
-        employee.equipments.includes('shoe') &&
-        employee.equipments.includes('t-shirt')
+        employee.equipment.includes('shoe') &&
+        employee.equipment.includes('t-shirt')
       );
     });
   } else if (equipedFilter === 'shoes equiped') {
     filteredEmployees = employees.filter(employee => {
-      return employee.equipments.includes('shoe');
+      return employee.equipment.includes('shoe');
     });
   } else if (equipedFilter === 't-shirt equiped') {
     filteredEmployees = employees.filter(employee => {
-      return employee.equipments.includes('t-shirt');
+      return employee.equipment.includes('t-shirt');
     });
   } else if (equipedFilter === 'no equipment') {
     filteredEmployees = employees.filter(employee => {
       return (
-        !employee.equipments.includes('shoe') &&
-        !employee.equipments.includes('t-shirt')
+        !employee.equipment.includes('shoe') &&
+        !employee.equipment.includes('t-shirt')
       );
     });
   }
