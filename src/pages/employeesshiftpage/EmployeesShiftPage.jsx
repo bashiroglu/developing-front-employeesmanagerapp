@@ -18,14 +18,15 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
         `http://localhost:3003/api/v1/bookings/`
       );
       setBookings(response.data.bookings);
-      // console.log(response.data.bookings);
     }
     getBookings();
-    // console.log(bookings);
   }, []);
 
   const filteredBookings = bookings.filter(booking => {
-    return booking.shift === shift;
+    return (
+      booking.shift === shift &&
+      new Date(booking.date).getDay() === new Date(shiftDate).getDay()
+    );
   });
   const createAndDownloadPdf = async (req, res) => {
     if (downloadType === 'Export as a pdf file') {
