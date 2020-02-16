@@ -15,6 +15,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
   const [fullname, setFullname, resetFullname] = useInputState('');
   const [email, setEmail, resetEmail] = useInputState('');
   const [groupname, setGroupname, resetGroupname] = useInputState('');
+  const [checkedList, setCheckedList] = useState([]);
   const handleUserDataSubmit = e => {
     e.preventDefault();
     const user = {
@@ -39,6 +40,18 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
     localStorage.removeItem('usersForRegister');
     setUsers([]);
     setLoading(false);
+  };
+  const handleCheckboxChange = email => {
+    if (checkedList.includes(email)) {
+      setCheckedList(checkedList.filter(emailItem => emailItem !== email));
+    } else {
+      setCheckedList([...checkedList, email]);
+    }
+  };
+  const handleDelete = checkedList => {
+    checkedList.forEach(emailItem =>
+      setUsers(users.filter(user => user.email !== emailItem))
+    );
   };
 
   return (
@@ -73,9 +86,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               element
               placeholder="Add user's groupname"
             />
-            <Button classes=" mx-3 btn-primary">
-              Add user to the list
-            </Button>
+            <Button classes=" mx-3 btn-primary">Add user to the list</Button>
           </form>
           <div className="col-md-8">
             <table className="table">
@@ -94,22 +105,52 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
                 {users.map(user => {
                   return (
                     <tr key={uuid()}>
-                      {Object.keys(user).map((key, i) => {
-                        return <td key={uuid()}>{user[key]}</td>;
+                      {['checkbox', ...Object.keys(user)].map((key, i) => {
+                        return key === 'checkbox' ? (
+                          <td key={uuid()}>
+                            <input
+                              onChange={() => handleCheckboxChange(user.email)}
+                              type="checkbox"
+                              checked={checkedList.includes(user.email)}
+                            />
+                          </td>
+                        ) : (
+                          <td key={uuid()}>{user[key]}</td>
+                        );
                       })}
                     </tr>
                   );
                 })}
               </tbody>
             </table>
-            {users.length > 0 ? (
-              <Button
-                onClick={handleUsersRegisterSubmit}
-                classes=" mx-3 btn-success"
-              >
-                {loading ? 'Your request is completing' : 'Sign Up all users'}
-              </Button>
-            ) : null}
+            <div className="row">
+              {users.length > 0 ? (
+                <Button
+                  onClick={handleUsersRegisterSubmit}
+                  classes=" mx-3 btn-success"
+                >
+                  {loading ? 'Your request is completing' : 'Sign Up all users'}
+                </Button>
+              ) : null}
+              {users.length > 0 ? (
+                <Button
+                  onClick={() => handleDelete(checkedList)}
+                  classes=" mx-3 btn-danger"
+                  disabled={!(checkedList.length > 0)}
+                >
+                  Delete
+                </Button>
+              ) : null}
+              {users.length > 0 ? (
+                <Button
+                  onClick={handleUsersRegisterSubmit}
+                  classes=" mx-3 btn-warning"
+                  disabled={!(checkedList.length === 1)}
+                >
+                  Update
+                </Button>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
@@ -117,7 +158,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
   );
 }
 SignUpUserByManagerPage.defaultProps = {
-  userDataTableColumns: ['fullname', 'email', 'groupname']
+  userDataTableColumns: ['checkbox', 'fullname', 'email', 'groupname']
 };
 
 export default SignUpUserByManagerPage;
