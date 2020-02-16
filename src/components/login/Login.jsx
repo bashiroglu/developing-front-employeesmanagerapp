@@ -7,8 +7,8 @@ import { AuthContext } from '../../utils/context/authContext';
 import { Link } from 'react-router-dom';
 
 function Login() {
-  const [emailInputValue, handleEmail] = useInputState('');
-  const [password, handlePassword] = useInputState('');
+  const [emailInputValue, setEmail] = useInputState('');
+  const [password, setPassword] = useInputState('');
   const { setUserObject } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +47,7 @@ function Login() {
         element="input"
         name="email"
         value={emailInputValue}
-        onChange={handleEmail}
+        onChange={setEmail}
       />
       <Input
         label="Password"
@@ -56,7 +56,7 @@ function Login() {
         element="input"
         name="password"
         value={password}
-        onChange={handlePassword}
+        onChange={setPassword}
       />
       <Button classes=" mx-3 btn-primary">
         {loading ? 'signing' : 'Log in'}

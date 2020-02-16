@@ -9,12 +9,12 @@ import { AuthContext } from '../../utils/context/authContext';
 
 function SignUp() {
   const { setUserObject } = useContext(AuthContext);
-  const [emailInputValue, handleEmail] = useInputState('');
-  const [password, handlePassword] = useInputState('');
-  const [groupname, handleGroupname] = useInputState('');
+  const [emailInputValue, setEmail] = useInputState('');
+  const [password, setPassword] = useInputState('');
+  const [groupname, setGroupname] = useInputState('');
   const [fullnameInputValue, setFullname] = useInputState('');
   const [usernameInputValue, setUsername] = useInputState('');
-  const [passwordConfirm, handlePasswordConfirm] = useInputState('');
+  const [passwordConfirm, setPasswordConfirm] = useInputState('');
   const [loading, setLoading] = useState(false);
   async function handleSignUpSubmit(e) {
     e.preventDefault();
@@ -57,7 +57,7 @@ function SignUp() {
         additionaltext="Please provide valid email, you will need to access your account"
         name="email"
         value={emailInputValue}
-        onChange={handleEmail}
+        onChange={setEmail}
       />
       <Input
         label="Fullname"
@@ -88,7 +88,7 @@ function SignUp() {
         element="input"
         name="password"
         value={password}
-        onChange={handlePassword}
+        onChange={setPassword}
       />
       <Input
         label="Password Confirm"
@@ -97,7 +97,7 @@ function SignUp() {
         element="input"
         name="passwordConfirm"
         value={passwordConfirm}
-        onChange={handlePasswordConfirm}
+        onChange={setPasswordConfirm}
       />
       <Input
         label="Provide your group name"
@@ -108,7 +108,7 @@ function SignUp() {
         additionaltext="You can get your groupname from your agency"
         name="groupname"
         value={groupname}
-        onChange={handleGroupname}
+        onChange={setGroupname}
       />
       <div className="row">
         <Button classes=" mx-3 btn-success">Sign up</Button>
