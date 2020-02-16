@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import SelectInput from '../elements/formelements/input/SelectInput';
+import Input from '../elements/formelements/input/Input';
 
 function Filter({
   filterOptions,
@@ -15,16 +16,13 @@ function Filter({
   setShift,
   setEquipedFilter,
   equipedFilter
+  // autocomplete,
+  // autoCompleteInputValue,
+  // setAutoCompleteInputValue
 }) {
-  const handleSubmit = e => {
-    e.preventDefault();
-  };
   return (
     <div className="container my-3">
       <form className="form-inline">
-        <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
-          Bring
-        </label>
         <SelectInput
           id="filterselect"
           name={name}
@@ -35,10 +33,16 @@ function Filter({
           }
           filterOptions={filterOptions}
           value={shift ? shift : equipedFilter}
+          labelContent={labelContent}
         />
-        <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
-          {labelContent}
-        </label>
+        {/*         {autocomplete ? (
+          <Input
+            element="input"
+            value={autoCompleteInputValue}
+            onChange={setAutoCompleteInputValue}
+          />
+        ) : null} */}
+
         {datepicker ? (
           <DatePicker
             selected={shiftDate ? new Date(shiftDate) : null}
@@ -46,25 +50,6 @@ function Filter({
             onChangeRaw={e => e.preventDefault()}
           />
         ) : null}
-
-        {/* <div className="custom-control custom-checkbox my-1 mr-sm-2">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="customControlInline"
-          />
-          <label className="custom-control-label" for="customControlInline">
-            Remember my preference
-          </label>
-        </div> */}
-
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          className="btn btn-primary my-1 ml-auto"
-        >
-          Submit
-        </button>
       </form>
     </div>
   );

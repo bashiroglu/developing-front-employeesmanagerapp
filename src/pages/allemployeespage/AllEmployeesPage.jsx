@@ -5,13 +5,15 @@ import axios from 'axios';
 import Filter from '../../components/filter/Filter';
 import Table from '../../components/table/Table';
 import Download from '../../components/download/Download';
+// import useInputState from '../../utils/hooks/useInputState';
 
 function AllEmployeesPage({ filterOptions, tableColumns }) {
   // const [filteredEmployees, setFilteredEmployees] = useState([]);
+  // const [autoCompleteInput, setAutoCompleteInput] = useInputState('');
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [downloadType, setDownloadType] = useState('Export as a pdf file');
-  const [equipedFilter, setEquipedFilter] = useState('');
+  const [equipedFilter, setEquipedFilter] = useState('all employees');
   useEffect(() => {
     async function getData() {
       const response = await axios.get('http://localhost:3003/api/v1/users');
@@ -79,6 +81,10 @@ function AllEmployeesPage({ filterOptions, tableColumns }) {
         equipedFilter={equipedFilter}
         setEquipedFilter={setEquipedFilter}
         filterOptions={filterOptions}
+        labelContent="Bring"
+        /* autocomplete={true}
+        autoCompleteInputValue={autoCompleteInput}
+        setAutoCompleteInputValue={setAutoCompleteInput} */
       />
       <Download
         downloadType={downloadType}
