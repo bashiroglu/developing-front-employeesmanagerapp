@@ -15,7 +15,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
   const [fullname, setFullname, resetFullname] = useInputState('');
   const [email, setEmail, resetEmail] = useInputState('');
   const [groupname, setGroupname, resetGroupname] = useInputState('');
-  const [checkedList, setCheckedList] = useState([]);
+  const [itemToModify, setItemToModify] = useState('');
   const handleUserDataSubmit = e => {
     e.preventDefault();
     const user = {
@@ -42,16 +42,16 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
     setLoading(false);
   };
   const handleCheckboxChange = email => {
-    if (checkedList.includes(email)) {
-      setCheckedList(checkedList.filter(emailItem => emailItem !== email));
+    if (itemToModify === email) {
+      setItemToModify('');
     } else {
-      setCheckedList([...checkedList, email]);
+      setItemToModify(email);
     }
   };
-  const handleDelete = checkedList => {
-    checkedList.forEach(emailItem =>
-      setUsers(users.filter(user => user.email !== emailItem))
-    );
+  const handleDelete = email => {
+    const usersArray = users.filter(user => user.email !== email);
+    setUsers(usersArray);
+    localStorage.setItem('usersForRegister', JSON.stringify(usersArray));
   };
 
   return (
@@ -111,7 +111,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
                             <input
                               onChange={() => handleCheckboxChange(user.email)}
                               type="checkbox"
-                              checked={checkedList.includes(user.email)}
+                              checked={user.email === itemToModify}
                             />
                           </td>
                         ) : (
@@ -134,9 +134,9 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               ) : null}
               {users.length > 0 ? (
                 <Button
-                  onClick={() => handleDelete(checkedList)}
+                  onClick={() => handleDelete(itemToModify)}
                   classes=" mx-3 btn-danger"
-                  disabled={!(checkedList.length > 0)}
+                  disabled={itemToModify === ''}
                 >
                   Delete
                 </Button>
@@ -145,7 +145,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
                 <Button
                   onClick={handleUsersRegisterSubmit}
                   classes=" mx-3 btn-warning"
-                  disabled={!(checkedList.length === 1)}
+                  disabled={itemToModify === ''}
                 >
                   Update
                 </Button>
