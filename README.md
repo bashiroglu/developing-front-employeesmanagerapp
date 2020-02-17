@@ -12,8 +12,10 @@ Business Logic: As a part time, I work in a plant and because all workers are te
 
 - I used employees and users but they both are the same, I wouldn't do this next time or I would distinguish them, in other words I wouldn't use these two words interchangeably.
 
-###### Weaknesses of project:
+###### Weaknesses of project or concerns:
 
 1. In front side I only check if user logged in and protect the normal user seeing the admin routes only simple if check which allow user seeing navlinks which take them to protected routes. But I plan to add protecting to back-end, as a result user can not make request anyway.
 
 2. When I create token, I don't take care of expire-date. This is not good at all. But for simplicity sake, I did like that in particular project.
+
+3. in SignUpUserByManagerPage I filter based on email. if email won't be unique, things won't work as I expected or as user expected. Which is highly possible that user add one email several times by mistake.
