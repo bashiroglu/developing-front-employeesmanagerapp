@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import uuid from 'uuid/v4';
 import axios from 'axios';
 
-import useInputState from '../../utils/hooks/useInputState';
 import Input from '../../components/elements/formelements/input/Input';
 import Button from '../../components/elements/formelements/button/Button';
 
 function SignUpUserByManagerPage({ userDataTableColumns }) {
   const [loading, setLoading] = useState(false);
+  const [updating, setUpdating] = useState(false);
   const initialUsers = JSON.parse(localStorage.getItem('usersForRegister'))
     ? JSON.parse(localStorage.getItem('usersForRegister'))
     : [];
   const [users, setUsers] = useState(initialUsers);
-  const [fullname, setFullname, resetFullname] = useInputState('');
-  const [email, setEmail, resetEmail] = useInputState('');
-  const [groupname, setGroupname, resetGroupname] = useInputState('');
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [groupname, setGroupname] = useState('');
   const [itemToModify, setItemToModify] = useState('');
   const handleUserDataSubmit = e => {
     e.preventDefault();
@@ -27,9 +27,24 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
 
     setUsers(usersArray);
     localStorage.setItem('usersForRegister', JSON.stringify(usersArray));
-    resetFullname();
-    resetEmail();
-    resetGroupname();
+    setFullname('');
+    setEmail('');
+    setGroupname('');
+  };
+  const handleUserUpdatedDataSubmit = emailToFilter => {
+    const user = {
+      fullname,
+      email,
+      groupname
+    };
+    let usersArray = users.filter(user => user.email !== emailToFilter);
+    usersArray = [...usersArray, user];
+
+    setUsers(usersArray);
+    localStorage.setItem('usersForRegister', JSON.stringify(usersArray));
+    setFullname('');
+    setEmail('');
+    setGroupname('');
   };
 
   const handleUsersRegisterSubmit = async () => {
@@ -53,6 +68,17 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
     setUsers(usersArray);
     localStorage.setItem('usersForRegister', JSON.stringify(usersArray));
   };
+  const handleUpdate = email => {
+    const user = users.find(user => user.email === email);
+    setItemToModify('');
+    setFullname(user.fullname);
+    setEmail(user.email);
+    setGroupname(user.groupname);
+    // handleUserUpdatedDataSubmit(email);
+
+    // setUsers(usersArray);
+    // localStorage.setItem('usersForRegister', JSON.stringify(usersArray));
+  };
 
   return (
     <div>
@@ -60,7 +86,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
         <div className="row">
           <form className="col-md-4" onSubmit={handleUserDataSubmit}>
             <Input
-              onChange={setFullname}
+              onChange={e => setFullname(e.target.value)}
               id="fullname"
               label="Full Name"
               name="fullname"
@@ -69,7 +95,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               placeholder="Add user full name please"
             />
             <Input
-              onChange={setEmail}
+              onChange={e => setEmail(e.target.value)}
               name="emails"
               id="emails"
               label="Email"
@@ -78,7 +104,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               placeholder="Add user email please"
             />
             <Input
-              onChange={setGroupname}
+              onChange={e => setGroupname(e.target.value)}
               name="groupname"
               id="groupname"
               label="Groupname (not mandatory)"
@@ -86,7 +112,9 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               element
               placeholder="Add user's groupname"
             />
-            <Button classes=" mx-3 btn-primary">Add user to the list</Button>
+            <Button classes=" mx-3 btn-primary">
+              {updating ? 'Update user to the list' : 'Add user to the list'}
+            </Button>
           </form>
           <div className="col-md-8">
             <table className="table">
@@ -143,7 +171,10 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               ) : null}
               {users.length > 0 ? (
                 <Button
-                  onClick={handleUsersRegisterSubmit}
+                  onClick={() => {
+                    handleDelete(itemToModify);
+                    handleUpdate(itemToModify);
+                  }}
                   classes=" mx-3 btn-warning"
                   disabled={itemToModify === ''}
                 >
