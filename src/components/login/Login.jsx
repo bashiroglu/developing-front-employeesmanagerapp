@@ -7,6 +7,7 @@ import { AuthContext } from '../../utils/context/authContext';
 import { Link } from 'react-router-dom';
 
 function Login() {
+  const [error, setError] = useState('');
   const [emailInputValue, setEmail] = useInputState('');
   const [password, setPassword] = useInputState('');
   const { setUserObject } = useContext(AuthContext);
@@ -15,27 +16,35 @@ function Login() {
   async function handleLoginSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const response = await axios.post(
-      'http://localhost:3003/api/v1/users/login',
-      {
-        email: emailInputValue,
-        password
-      }
-    );
-    setLoading(false);
-    const { token, email, userId, username, fullname, role } = response.data;
-    localStorage.setItem(
-      'userObject',
-      JSON.stringify({
-        userId,
-        token,
-        email,
-        username,
-        fullname,
-        role
-      })
-    );
-    setUserObject(response.data);
+    try {
+      const response = await axios.post(
+        'http://localhost:3003/api/v1/users/login',
+        {
+          email: emailInputValue,
+          password
+        }
+      );
+
+      setLoading(false);
+      console.log(response);
+
+      const { token, email, userId, username, fullname, role } = response.data;
+      localStorage.setItem(
+        'userObject',
+        JSON.stringify({
+          userId,
+          token,
+          email,
+          username,
+          fullname,
+          role
+        })
+      );
+      setUserObject(response.data);
+    } catch (error) {
+      setError(error.response.data.message);
+      setLoading(false);
+    }
   }
   return (
     <form onSubmit={handleLoginSubmit}>
@@ -58,6 +67,7 @@ function Login() {
         value={password}
         onChange={setPassword}
       />
+      <div className="text-danger">{error || error}</div>
       <Button classes=" mx-3 btn-primary">
         {loading ? 'signing' : 'Log in'}
       </Button>
