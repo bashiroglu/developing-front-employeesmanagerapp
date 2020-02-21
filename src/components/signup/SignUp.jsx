@@ -8,7 +8,7 @@ import useInputState from '../../utils/hooks/useInputState';
 
 function SignUp() {
   const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(false);
   const [emailInputValue, setEmail] = useInputState('');
   const [password, setPassword] = useInputState('');
   const [groupname, setGroupname] = useInputState('');
@@ -44,7 +44,9 @@ function SignUp() {
   return (
     <form onSubmit={handleSignUpSubmit}>
       {success ? (
-        <div className="text-success">{success || success}</div>
+        <div class="alert alert-success" role="alert">
+          {success}
+        </div>
       ) : (
         <>
           <h2>I don't have account</h2>
@@ -110,10 +112,13 @@ function SignUp() {
             value={groupname}
             onChange={setGroupname}
           />
-
+          {error && (
+            <div class="alert alert-warning" role="alert">
+              {error}
+            </div>
+          )}
           <div className="row">
             <>
-              <div className="text-danger">{error || error}</div>
               <Button classes=" mx-3 btn-primary">
                 {loading ? 'your account is creating' : 'Sign up'}
               </Button>

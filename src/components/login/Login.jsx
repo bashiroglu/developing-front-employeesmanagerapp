@@ -67,7 +67,11 @@ function Login() {
         value={password}
         onChange={setPassword}
       />
-      <div className="text-danger">{error || error}</div>
+      {error && (
+        <div class="alert alert-warning" role="alert">
+          {error}
+        </div>
+      )}
       <Button classes=" mx-3 btn-primary">
         {loading ? 'signing' : 'Log in'}
       </Button>
