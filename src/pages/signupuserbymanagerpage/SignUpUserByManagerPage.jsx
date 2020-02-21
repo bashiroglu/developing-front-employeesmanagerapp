@@ -6,6 +6,7 @@ import Input from '../../components/elements/formelements/input/Input';
 import Button from '../../components/elements/formelements/button/Button';
 
 function SignUpUserByManagerPage({ userDataTableColumns }) {
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [updating, setUpdating] = useState(false);
   const initialUsers = JSON.parse(localStorage.getItem('usersForRegister'))
@@ -48,13 +49,18 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
   };
 
   const handleUsersRegisterSubmit = async () => {
-    setLoading(true);
-    await axios.post('http://localhost:3003/api/v1/users/signup-many', {
-      users
-    });
-    localStorage.removeItem('usersForRegister');
-    setUsers([]);
-    setLoading(false);
+    try {
+      setLoading(true);
+      await axios.post('http://localhost:3003/api/v1/users/signup-many', {
+        users
+      });
+      localStorage.removeItem('usersForRegister');
+      setUsers([]);
+      setLoading(false);
+    } catch (error) {
+      setError(error.response.data.message);
+      setLoading(false);
+    }
   };
   const handleCheckboxChange = email => {
     if (itemToModify === email) {

@@ -18,6 +18,6 @@ Business Logic: As a part time, I work in a plant and because all workers are te
 
 2. When I create token, I don't take care of expire-date. This is not good at all. But for simplicity sake, I did like that in particular project.
 
-3. in SignUpUserByManagerPage I filter based on email. if email won't be unique, things won't work as I expected or as user expected. Which is highly possible that user add one email several times by mistake.
+3. in SignUpUserByManagerPage I filter based on email. if email won't be unique, things won't work as I expected or as user expected. Which is highly possible that user add one email several times by mistake.(this can be solved by using uuid)
 4. signup success without confirmpassword.
-4. in manager signup I send request even one of users fail, it send back request failed, however an other user registered.
+5. in manager signup I send request even one of users fail, it send back request failed, however an other user registered.

@@ -8,7 +8,7 @@ import useInputState from '../../utils/hooks/useInputState';
 
 function SignUp() {
   const [success, setSuccess] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const [emailInputValue, setEmail] = useInputState('');
   const [password, setPassword] = useInputState('');
   const [groupname, setGroupname] = useInputState('');
