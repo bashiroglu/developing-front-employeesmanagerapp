@@ -1,6 +1,17 @@
+After download project files, in the project directory, you can run :
+
+### `npm start`
+
+
 ## Employee Manager App
 
 This is my first React project which I code without any tutorial, however sometimes I need some tecnical knowledge in particular topics and I refresh my knowledge about it. Firstly, I used class based components but then I transfered it to functional components to practice hooks and state. As a front-end library I used Bootstarp to not lose time with styling, instead focus on React logic.
+
+This is the first project that is designed and coded by me. In some concepts, I don't know what I am doing. Because I haven't seen them in anywhere, I just thought that it may be possible to do like this and I did(sometimes it worked). I will list thoso below
+
+1. There are many to count, in starting I thought it will be less but now I realize most of application is not acceptable in terms of clean code(esepecially in front side), maintainablity etc., although it works . I understand many things that why we are not supposed to use them.
+
+
 
 ###### In this application I prefered to go wide rather than deep. I tried to add as much features as possible but I made many bugs while adding features.
 
@@ -19,5 +30,7 @@ Business Logic: As a part time, I work in a plant and because all workers are te
 2. When I create token, I don't take care of expire-date. This is not good at all. But for simplicity sake, I did like that in particular project.
 
 3. in SignUpUserByManagerPage I filter based on email. if email won't be unique, things won't work as I expected or as user expected. Which is highly possible that user add one email several times by mistake.(this can be solved by using uuid)
+
 4. signup success without confirmpassword.
+
 5. in manager signup I send request even one of users fail, it send back request failed, however an other user registered.
