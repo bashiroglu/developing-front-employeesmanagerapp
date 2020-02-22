@@ -6,7 +6,6 @@ import Input from '../../components/elements/formelements/input/Input';
 import Button from '../../components/elements/formelements/button/Button';
 
 function SignUpUserByManagerPage({ userDataTableColumns }) {
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [updating, setUpdating] = useState(false);
   const initialUsers = JSON.parse(localStorage.getItem('usersForRegister'))
@@ -31,6 +30,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
     setFullname('');
     setEmail('');
     setGroupname('');
+    setUpdating(false);
   };
 
   const handleUsersRegisterSubmit = async () => {
@@ -43,8 +43,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
       setUsers([]);
       setLoading(false);
     } catch (error) {
-      setError(error.response.data.message);
-      setLoading(false);
+      console.log(error);
     }
   };
   const handleCheckboxChange = email => {
@@ -105,7 +104,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               placeholder="Add user's groupname"
             />
             <Button classes=" mx-3 btn-primary">
-              {updating ? 'Update user to the list' : 'Add user to the list'}
+              {updating ? 'Update user data' : 'Add user to the list'}
             </Button>
           </form>
           <div className="col-md-8">
@@ -164,6 +163,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
               {users.length > 0 ? (
                 <Button
                   onClick={() => {
+                    setUpdating(true);
                     handleDelete(itemToModify);
                     handleUpdate(itemToModify);
                   }}
