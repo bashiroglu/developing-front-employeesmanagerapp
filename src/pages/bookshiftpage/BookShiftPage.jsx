@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import './datepicker.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Input from '../../components/elements/formelements/input/Input';
@@ -65,6 +66,7 @@ function BookShiftPage({ filterOptionsShift }) {
       <div className="row">
         <form className="col-7 mt-5" onSubmit={handleSubmit}>
           <DatePicker
+            className="datepicker"
             selected={shiftDate ? new Date(shiftDate) : null}
             onChange={setShiftDate}
             onChangeRaw={e => e.preventDefault()}

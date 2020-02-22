@@ -58,6 +58,7 @@ function UpdateDetails() {
   const CommonUserComps = (
     <>
       <Input
+        disabled={true}
         label="Email"
         type="email"
         name="email"
