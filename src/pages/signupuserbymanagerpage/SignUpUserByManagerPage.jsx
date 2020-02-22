@@ -32,25 +32,10 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
     setEmail('');
     setGroupname('');
   };
-  const handleUserUpdatedDataSubmit = emailToFilter => {
-    const user = {
-      fullname,
-      email,
-      groupname
-    };
-    let usersArray = users.filter(user => user.email !== emailToFilter);
-    usersArray = [...usersArray, user];
-
-    setUsers(usersArray);
-    localStorage.setItem('usersForRegister', JSON.stringify(usersArray));
-    setFullname('');
-    setEmail('');
-    setGroupname('');
-  };
 
   const handleUsersRegisterSubmit = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
       await axios.post('http://localhost:3003/api/v1/users/signup-many', {
         users
       });
@@ -71,6 +56,7 @@ function SignUpUserByManagerPage({ userDataTableColumns }) {
   };
   const handleDelete = email => {
     const usersArray = users.filter(user => user.email !== email);
+    setItemToModify('');
     setUsers(usersArray);
     localStorage.setItem('usersForRegister', JSON.stringify(usersArray));
   };
