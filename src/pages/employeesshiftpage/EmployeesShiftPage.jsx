@@ -31,7 +31,9 @@ function EmployeesShiftPage({ filterOptions, tableColumns }) {
   const createAndDownloadPdf = async (req, res) => {
     if (downloadType === 'Export as a pdf file') {
       setLoading(true);
-      await axios.post('http://localhost:3003/api/v1/pdf', { items: bookings });
+      await axios.post('http://localhost:3003/api/v1/pdf', {
+        items: filteredBookings
+      });
       const response = await axios.get('http://localhost:3003/api/v1/pdf', {
         responseType: 'blob'
       });

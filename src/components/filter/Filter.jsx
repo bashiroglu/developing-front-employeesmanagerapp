@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import SelectInput from '../elements/formelements/input/SelectInput';
-import Input from '../elements/formelements/input/Input';
+import './filter.css';
 
 function Filter({
   filterOptions,
@@ -45,6 +45,7 @@ function Filter({
 
         {datepicker ? (
           <DatePicker
+            className="datepicker"
             selected={shiftDate ? new Date(shiftDate) : null}
             onChange={setShiftDate}
             onChangeRaw={e => e.preventDefault()}
